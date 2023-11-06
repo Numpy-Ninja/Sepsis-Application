@@ -1,0 +1,1 @@
+{"uuid":"b1392433-33d7-45ee-aa7a-437f651ec26b","name":"Scenario: check if user can register successfully with less than 8 characters","children":["019d2492-138a-4108-9d48-df3d6c7533f7"],"befores":[],"afters":[],"start":1697471085994,"stop":1697471085999}

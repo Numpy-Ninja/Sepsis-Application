@@ -1,0 +1,1 @@
+{"uuid":"378401aa-ddc6-422f-a42a-edfd3c31961e","name":"Scenario: check if user can register successfully when only confirmatory password field is blank","children":["4d505d4f-5a62-4a41-93b6-193115ac9cf5"],"befores":[],"afters":[],"start":1697234510867,"stop":1697234510892}
