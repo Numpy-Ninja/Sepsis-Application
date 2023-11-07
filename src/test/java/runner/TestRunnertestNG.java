@@ -6,14 +6,14 @@ import org.testng.annotations.DataProvider;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions( // reporting purpose
-
+@CucumberOptions(plugin = { "pretty","html:target/cucumber.html" ,"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" },
 publish=true,
 monochrome = false, // console output
 	
 features = { "src/test/resources/features" }, // location of feature files
-tags=" ",// tags from feature file,
-glue = { "stepDefinitions","Hooks" }// location of step definition files
+tags=" @NewPatientPersonalInformation",// tags from feature file,
+glue = { "stepDefinitions","applicationHooks" }// location of step definition files
 
 ) 
 

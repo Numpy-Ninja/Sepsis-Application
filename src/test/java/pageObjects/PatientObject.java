@@ -11,7 +11,8 @@ import DriverFactory.abstractComponents;
 import utilities.configReader;
 
 public class PatientObject extends abstractComponents  {
-	public  WebDriver driver=BaseClass.getdriver();
+	public  static WebDriver driver=BaseClass.getdriver();
+	abstractComponents ac = new abstractComponents();
 	String SFurl=configReader.getApplicationUrl();
 	String username = configReader.getUsername();
 	String password = configReader.getPassword();
@@ -35,7 +36,7 @@ public class PatientObject extends abstractComponents  {
 		//Constructor
 		
 		
-		public PatientObject(WebDriver driver) {
+		public PatientObject() {
 	        
 			
 			PageFactory.initElements(driver, this);
@@ -47,29 +48,18 @@ public class PatientObject extends abstractComponents  {
 
 		}
 		
-		public Boolean Login() {
+		public void Login(String username,String password) {
 	   
-			waitForElementToappear(user);
+			//waitForElementToappear(user);
 			
 			user.clear();
 			
 			user.sendKeys(username);
+			//waitForElementToappear(pwd);
 			pwd.clear();
 			pwd.sendKeys(password);
 
-			// To check empty fields , we need to check "required" field is on an attribute
-			if (username.isBlank()) {
-				JavascriptExecutor js_user = (JavascriptExecutor) driver;
-				isRequired = (Boolean) js_user.executeScript("return arguments[0].required;", user);
-				return isRequired;
-			} 
-			else if (password.isBlank()) {
-				JavascriptExecutor js_password = (JavascriptExecutor) driver;
-				isRequired = (Boolean) js_password.executeScript("return arguments[0].required;", pwd);
-				return isRequired;
-
-			}
-			return isRequired;
+		
 		}
 		
 		public void login_button() {
@@ -80,14 +70,14 @@ public class PatientObject extends abstractComponents  {
 		public void waffle_click()
 			{
 			
-			waitForElementToappear(waffle_btn);
+			//waitForElementToappear(waffle_btn);
 			waffle_btn.click();
 			}
 
 
 		public void sepsisApp_click()
 		{
-			waitForElementToappear(sepsisApp);
+			//waitForElementToappear(sepsisApp);
 			sepsisApp.click();
 		}
 public void patientObject_select()
@@ -98,21 +88,21 @@ public void patientObject_select()
 }
 public void selectNew()
 {
-	waitForElementToappear(new_btn);
+	//waitForElementToappear(new_btn);
 	new_btn.click();
 }
-public void next_btn()
-{
-	JavascriptExecutor executor = (JavascriptExecutor)driver;
-    executor.executeScript("arguments[0].click();",next_btn );
-
-}
+//public void next_btn()
+//{
+//	JavascriptExecutor executor = (JavascriptExecutor)driver;
+//    executor.executeScript("arguments[0].click();",next_btn );
+//
+//}
 
 	
 
 public void enterFirstName(String First_Name)
 {
-	waitForElementToappear(first_name);
+	//waitForElementToappear(first_name);
 	first_name.clear();
 	
 	first_name.sendKeys(First_Name);
@@ -120,7 +110,7 @@ public void enterFirstName(String First_Name)
 }
 public void enterLastName(String Last_Name)
 {
-	waitForElementToappear(last_name);
+	//waitForElementToappear(last_name);
 	last_name.clear();
 	
 	last_name.sendKeys(Last_Name);

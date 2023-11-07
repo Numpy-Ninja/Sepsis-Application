@@ -8,12 +8,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.PatientObject;
+import utilities.configReader;
 
 
 public class commonSD {
 
-	public WebDriver driver=BaseClass.getdriver();
-	PatientObject patient = new PatientObject(driver);
+
+	PatientObject patient = new PatientObject();
+	String username = configReader.getUsername();
+	String password = configReader.getPassword();
 
 	@Given("The patient is on Signin page of salesforce application")
 	public void the_patient_is_on_signin_page_of_salesforce_application() {
@@ -22,8 +25,8 @@ public class commonSD {
 	}
 
 	@When("The patient enter valid {string} and {string}")
-	public void the_patient_enter_valid_and(String username, String password) {
-		patient.Login();
+	public void the_patient_enter_valid_and(String userName, String passWord) {
+		patient.Login(username,password);
 	    
 	}
 
@@ -34,12 +37,13 @@ public class commonSD {
 	}
 
 	@Then("The user redirected to SalesForceHomepage")
-	public void the_user_redirected_to_sales_force_homepage() {
+	public void the_user_redirected_to_sales_force_homepage() throws InterruptedException {
+		Thread.sleep(3000);
 		patient.waffle_click();
 		patient.sepsisApp_click();
 		patient.patientObject_select();
 		patient.selectNew();
-		patient.next_btn();
+		//patient.next_btn();
 	    
 	}
 

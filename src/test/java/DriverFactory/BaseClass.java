@@ -22,7 +22,7 @@ public class BaseClass {
 	public static WebDriver driver;
 	public static WebDriverWait wait;
 
-	public WebDriver init_driver(String browser) {
+	public static WebDriver init_driver(String browser) {
 
 		System.out.println("browser value is: " + browser);
 
@@ -46,7 +46,7 @@ public class BaseClass {
 		driver.manage().window().maximize();
 
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
 		return driver;
 
@@ -56,6 +56,7 @@ public class BaseClass {
 		return driver;
 
 	}
+	
 	public void closeallDriver() {
 		driver.close();
 	}

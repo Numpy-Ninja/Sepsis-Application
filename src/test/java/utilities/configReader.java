@@ -8,41 +8,50 @@ import java.util.Properties;
 
 public class configReader {
 
-	public static Properties prop;
+	private static Properties prop;
+	private static String browserType = null;
+	private final static String propertyFilePath = ".\\src\\test\\resources\\config\\config.properties";
 
 	/**
 	 * This method is used to load the properties from config.properties file
 	 * @return it returns Properties prop object
 	 */
-	public static Properties init_prop() {
+	public static void init_prop() {
 
-	
 		try {
-			FileInputStream fis = new FileInputStream("./src/test/resources/config/config.properties");
-			 prop = new Properties();
-			prop.load(fis);
-			fis.close();
+			FileInputStream fis;
+			fis = new FileInputStream(propertyFilePath);
+			prop = new Properties();
 
+			try {
+				prop.load(fis);
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException("Config.properties not found at" + propertyFilePath);
 		}
-
-		return prop;
-
 	}
+
+	
+	public static void setbrowser(String browser) {
+		browserType = browser;
+	}
+	
+	
 	public static String getBrowserType() {
-		String browser = prop.getProperty("browser");
-		if (browser != null)
-			return browser;
+		String browserType = prop.getProperty("browser");
+		if (browserType != null)
+			return browserType;
 		else
 			throw new RuntimeException("browser not specified in the Configuration.properties file.");
 	}
 	public static String getApplicationUrl() {
-		String SFurl = prop.getProperty("url");
-		if (SFurl != null)
-			return SFurl;
+		String url = prop.getProperty("SFurl");
+		if (url != null)
+			return url;
 		else
 			throw new RuntimeException("url not specified in the Configuration.properties file.");
 	}
