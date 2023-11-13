@@ -2,6 +2,7 @@ package DriverFactory;
 
 import java.time.Duration;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,9 +12,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class abstractComponents {
 	public static WebDriverWait wait;
 	public static WebDriver driver;
-	public abstractComponents() {
+	public static Actions a ;
+	public abstractComponents(WebDriver driver) {
 
 		this.wait = wait;
+		this.driver=driver;
 
 	}
 
@@ -23,10 +26,22 @@ public class abstractComponents {
 	}
 
 	public void ActionClass(WebElement e, String s) {
-		Actions a = new Actions(driver);
+		
+		a = new Actions(driver);
 		a.sendKeys(e, s).build().perform();
+		
 
 	}
-
+	public void ActionClassMoveTo(WebElement e ) {
+	
+		a = new Actions(driver);
+		a.moveToElement(e).click().build().perform();
 
 }
+public void ActionClassShiftHold()
+{
+	a.sendKeys(Keys.chord(Keys.chord(Keys.CONTROL+"S"))).build().perform();
+}
+	
+		
+	}
