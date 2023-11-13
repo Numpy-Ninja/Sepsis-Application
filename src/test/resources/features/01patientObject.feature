@@ -1,16 +1,48 @@
-@NewPatientPersonalInformation
-Feature: Validating the New Patient Personal Information
+@NewPatientInformation
+Feature: Validating the New Patient information
  
 
-  Background: The Patient is logged in to Saleforce app(Sepsis)
-    Given The patient is on Signin page of salesforce application
-    When The patient enter valid "username" and "password"
-    And The user click on login button
-    Then The user redirected to SalesForceHomepage
-
-  @TS_01_ValidateFirstNameWithValidData
-  Scenario: Validating the FirstName
-    Given patient is on patient Personal Information page
-    When Patient enters the First Name in "FirstName"
-    And Patient enters the Last Name in "LastName"
-    Then after filling the form with manadatory fileds and saving,the First Name status should be "status"
+  @TS_01_ValidateEmergencycontact
+  Scenario Outline: Validating the EmergencyContact
+    Given Patient is on New patient form
+    When Patient enters "<FullName>" and "<EmergencyContactNumber>"
+    Then Patient can see the "<FullName>" and "<EmergencyContactNumber>"entered on emergency contact info
+    
+    
+    Examples:
+       |FullName | EmergencyContactNumber | 
+       |Kiya| 123-456-7890 | 
+ 
+ 
+ @TS_02_ValidateProviderInformation
+  Scenario Outline: Validating the ProviderInformation
+    Given Patient is on same patient form
+    When Patient enters "<DoctorsName>" and "<DoctorsContactNumber>" and "<ClinicName>" and "<DoctorsEmail>"
+    Then Patient can see the "<DoctorsName>" and "<DoctorsContactNumber>" and "<ClinicName>" and "<DoctorsEmail>" entered on provider information
+    
+    
+    Examples:
+       |DoctorsName | DoctorsContactNumber | ClinicName | DoctorsEmail |
+       |Klein| 321-456-7890 | BrightClinic | klein@gmail.com |
+ 
+  @TS_01_ValidateMedicalHistory
+  Scenario Outline: Validating the EmergencyContact
+    Given Patient is on same patient form
+    When Patient enters "<HeightINcm>" and "<WeightinKgs>" on medical history
+    Then Patient can see the "<HeightINcm>" and "<WeightinKgs>" entered on medical history
+    
+    
+    Examples:
+       |HeightINcm | WeightinKgs | 
+       |12.00| 60 | 
+       
+  @TS_01_ValidatePersonalInfo
+  Scenario Outline: Validating the PersonalInfo
+    Given Patient is on same patient form
+    When Patient enters "<FirstName>" and "<LastName>" Gender and DOB on personal information
+    Then Patient can see the "<FirstName>" and "<LastName>" and other details entered on personal information
+    
+    
+    Examples:
+       |FirstName | LastName | 
+       |Kelly| Rob | 

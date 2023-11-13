@@ -12,7 +12,7 @@ publish=true,
 monochrome = false, // console output
 	
 features = { "src/test/resources/features" }, // location of feature files
-tags=" @NewPatientPersonalInformation",// tags from feature file,
+tags=" @NewPatientInformation",// tags from feature file,
 glue = { "stepDefinitions","applicationHooks" }// location of step definition files
 
 ) 

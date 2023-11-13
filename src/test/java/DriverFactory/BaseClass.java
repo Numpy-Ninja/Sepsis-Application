@@ -29,6 +29,8 @@ public class BaseClass {
 		if (browser.equals("chrome")) {
 			ChromeOptions option = new ChromeOptions();
 			option.addArguments("--disable-notifications");
+			//option.setUnhandledPromptBehaviour(ACCEPT);
+
 			WebDriverManager.chromedriver().setup();
 
 			driver = new ChromeDriver(option);
