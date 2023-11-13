@@ -9,10 +9,11 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeClass;
 
 import DriverFactory.BaseClass;
 
-import utilities.configReader;
+import utilities.ConfigReader;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
@@ -29,9 +30,9 @@ public class AppHooks  {
 	public static void before() throws Throwable {
 		// Get browser Type from config file
 		
-		configReader.init_prop();	
-		String browser = configReader.getBrowserType();
-		System.out.println(configReader.getBrowserType());
+		ConfigReader.init_prop();	
+		String browser = ConfigReader.getBrowserType();
+		System.out.println(ConfigReader.getBrowserType());
 
 		// Initialize driver from driver factory
 		driverfactory = new BaseClass();
@@ -50,11 +51,12 @@ public class AppHooks  {
 		}
 	}
 
-
+    
 	@AfterAll
 	public static void after() {
 	
 		driverfactory.closeallDriver();
+
 	}
 }
 	

@@ -8,11 +8,11 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(plugin = { "pretty","html:target/cucumber.html" ,"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" },
-
+publish=true,
 monochrome = false, // console output
 	
 features = { "src/test/resources/features" }, // location of feature files
-tags="@ExistingMorbidities",// tags from feature file,
+tags=" @NewPatientInformation",// tags from feature file,
 glue = { "stepDefinitions","applicationHooks" }// location of step definition files
 
 ) 
