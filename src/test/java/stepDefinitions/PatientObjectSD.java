@@ -5,9 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeClass;
-
-import DriverFactory.BaseClass;
+import org.testng.annotations.BeforeClass; 
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -28,8 +26,8 @@ public class PatientObjectSD {
 	
 	@Given("Patient is on New patient form")
 	public void patient_is_on_new_patient_form() {
-		patient.SalesForcelogin_page();
-		patient.Login(ConfigReader.getUsername(),ConfigReader.getPassword());
+		//patient.SalesForcelogin_page();
+		//patient.Login(ConfigReader.getUsername(),ConfigReader.getPassword());
 		logger.info("Patient is on new patient form");
 
 	}
