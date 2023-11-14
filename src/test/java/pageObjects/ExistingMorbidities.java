@@ -7,16 +7,16 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import DriverFactory.BaseClass;
-import DriverFactory.abstractComponents;
-import utilities.configReader;
+import driverFactory.AbstractComponents;
+import driverFactory.BaseClass;
+import utilities.ConfigReader;
 
 public class ExistingMorbidities {
 	public static WebDriver driver = BaseClass.getdriver();
-	abstractComponents ac = new abstractComponents(driver);
-	String SFurl = configReader.getApplicationUrl();
-	String username = configReader.getUsername();
-	String password = configReader.getPassword();
+	AbstractComponents ac = new AbstractComponents(driver);
+	String SFurl = ConfigReader.getApplicationUrl();
+	String username = ConfigReader.getUsername();
+	String password = ConfigReader.getPassword();
 	JavascriptExecutor executor = (JavascriptExecutor) driver;
 
 	// Locators
@@ -62,7 +62,7 @@ public class ExistingMorbidities {
 
 	@FindBy(xpath = "//span[@title='Others']")
 	private static WebElement ExistInfectionOther;
-	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M14 43.7V8')])[1]")
+	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M14 43.7V8')])[2]")
 	private static WebElement EinfRightArrow;
 	@FindBy(xpath = "//input[@name='Other_Existing_Infections__c']")
 	private static WebElement EinfotherTextBox;
@@ -73,7 +73,7 @@ public class ExistingMorbidities {
 	private static WebElement HabitOption;
 	@FindBy(xpath = "//span[@title='Drugs']")
 	private static WebElement HabitOption1;
-	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M14 43.7V8')])[1]")
+	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M14 43.7V8')])[4]")
 	private static WebElement HbtRightArrow;
 
 	// Allergy
@@ -87,50 +87,49 @@ public class ExistingMorbidities {
 
 	@FindBy(xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[14]")
 	private static WebElement FitnessDropdown;
-	@FindBy(xpath = "(//span[@class='slds-media__figure slds-listbox__option-icon'])[2]")//"(//lightning-base-combobox-item[3]/span[2]/span)[2]")
+	@FindBy(xpath = "(//span[@class='slds-media__figure slds-listbox__option-icon'])[2]") // "(//lightning-base-combobox-item[3]/span[2]/span)[2]")
 	private static WebElement option;
-	
-	//Surgeries
+
+	// Surgeries
 	@FindBy(xpath = "//input[@name='Surgeries_with_in_6_months__c']")
-	private static WebElement surgeryCkBX ;
+	private static WebElement surgeryCkBX;
 	@FindBy(xpath = "//input[@name='how_to_make_a_text_box_visble_if_a_check__c']")
 	private static WebElement surgeryTxtbx;
-	
-	//Internation Travel
-		
+
+	// Internation Travel
+
 	@FindBy(xpath = "//input[@name='International_travel_in_last_3_months__c']")
-		private static WebElement IntTravelChkbx ;
-		@FindBy(xpath = "//input[@name='Enter_country_Name__c']")
-		private static WebElement IntTravelTxtbx;
-	
-		//Immunization
-		
-		@FindBy(xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[13]")
-		private static WebElement ImmunizationDropdown;
-		@FindBy(xpath ="(//lightning-base-combobox-item [2]/span[2]/span)[1]")
-		private static WebElement ImmunizationOption;
-		
-		//Physical Fitness
-		
-		@FindBy(xpath = "(//div/ul/li[3]/div/span/span)[5]")
-		private static WebElement PhysicalFitnessOption;
-		@FindBy(xpath = "(//button[@title='Move selection to Chosen'])[5]")
-		private static WebElement PFRightArrow;
-		@FindBy(xpath = "(//*[name()='path' and contains(@d,'M38 8.3v35')])[5]")
-		private static WebElement PFleftArrow;
-		
-		//Family History
-		@FindBy(xpath = "(//div/ul/li[1]/div/span/span)[3]")
-		private static WebElement FamHistoryOption;
-		@FindBy(xpath = "(//button[@title='Move selection to Chosen'])[3]")
-		private static WebElement FamHisRightArrow;
-		@FindBy(xpath = "(//div/ul/li[2]/div/span/span)[3]")
-		private static WebElement FamHistoryOption1;
-		@FindBy(xpath = "(//div/ul/li[3]/div/span/span)[3]")
-		private static WebElement FamHistoryOption2;
-		@FindBy(xpath = "(//button[@title='Move selection to Available'])[3]")
-		private static WebElement FamHisLfttArrow;
-		
+	private static WebElement IntTravelChkbx;
+	@FindBy(xpath = "//input[@name='Enter_country_Name__c']")
+	private static WebElement IntTravelTxtbx;
+
+	// Immunization
+
+	@FindBy(xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[13]")
+	private static WebElement ImmunizationDropdown;
+	@FindBy(xpath = "(//lightning-base-combobox-item [2]/span[2]/span)[1]")
+	private static WebElement ImmunizationOption;
+
+	// Physical Fitness
+
+	@FindBy(xpath = "(//div/ul/li[3]/div/span/span)[5]")
+	private static WebElement PhysicalFitnessOption;
+	@FindBy(xpath = "(//button[@title='Move selection to Chosen'])[5]")
+	private static WebElement PFRightArrow;
+	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M38 8.3v35')])[5]")
+	private static WebElement PFleftArrow;
+
+	// Family History
+	@FindBy(xpath = "(//div/ul/li[1]/div/span/span)[3]")
+	private static WebElement FamHistoryOption;
+	@FindBy(xpath = "(//button[@title='Move selection to Chosen'])[3]")
+	private static WebElement FamHisRightArrow;
+	@FindBy(xpath = "(//div/ul/li[2]/div/span/span)[3]")
+	private static WebElement FamHistoryOption1;
+	@FindBy(xpath = "(//div/ul/li[3]/div/span/span)[3]")
+	private static WebElement FamHistoryOption2;
+	@FindBy(xpath = "(//button[@title='Move selection to Available'])[3]")
+	private static WebElement FamHisLfttArrow;
 
 	// Constructor
 
@@ -223,6 +222,8 @@ public class ExistingMorbidities {
 	}
 
 	public void ClickonRightarrow() {
+		// ac.actionClassMoveTo(EmRightArrow);
+		executor.executeScript("arguments[0].scrollIntoView()", EmRightArrow);
 		EmRightArrow.click();
 	}
 
@@ -240,7 +241,10 @@ public class ExistingMorbidities {
 	}
 
 	public void ValidateExistMorbidityOther() {
-		ExistMorbidityOther.click();
+		//ac.actionClassMoveTo(ExistMorbidityOther);
+		//ExistMorbidityOther.click();
+		executor.executeScript("arguments[0].click();", ExistMorbidityOther);
+
 	}
 
 	public void validateOtherTextbox(String morbidity) {
@@ -256,7 +260,7 @@ public class ExistingMorbidities {
 
 	public void clickRightarrow() {
 
-		ac.ActionClassMoveTo(EinfRightArrow);
+		ac.actionClassMoveTo(EinfRightArrow);
 	}
 
 	public void validateOtherTextboxExInf(String infection) {
@@ -280,7 +284,7 @@ public class ExistingMorbidities {
 
 	public void ClickonHbtRightarrow() {
 
-		ac.ActionClassMoveTo(HbtRightArrow);
+		ac.actionClassMoveTo(HbtRightArrow);
 	}
 
 	public String HbtgetText() {
@@ -293,63 +297,54 @@ public class ExistingMorbidities {
 
 	}
 //Physical Fitness
-	
-	public void selectPFOption()
-	{
-		ac.ActionClassMoveTo(PhysicalFitnessOption);
+
+	public void selectPFOption() {
+		ac.actionClassMoveTo(PhysicalFitnessOption);
 	}
-	
-	public void clickRightArrow()
-	{
-		ac.ActionClassMoveTo(PFRightArrow);
+
+	public void clickRightArrow() {
+		ac.actionClassMoveTo(PFRightArrow);
 	}
-	
-	
-	public void clickLeftArrow()
-	{
-		ac.ActionClassMoveTo(PFleftArrow);
+
+	public void clickLeftArrow() {
+		ac.actionClassMoveTo(PFleftArrow);
 	}
+
 	public String validateErrormsgPF() {
 		String errorMsg = ErrorMsg.getText();
 		return errorMsg;
 	}
-	
-	//Family History
-	
-	public void SelMultipleOptions()
-	{
-		ac.ActionClassShiftHold();
-		ac.ActionClassMoveTo(FamHistoryOption1);
-		ac.ActionClassMoveTo(FamHistoryOption2);
-		ac.ActionClassMoveTo(FamHisRightArrow);
+
+	// Family History
+
+	public void SelMultipleOptions() {
+		ac.actionClassShiftHold();
+		ac.actionClassMoveTo(FamHistoryOption1);
+		ac.actionClassMoveTo(FamHistoryOption2);
+		ac.actionClassMoveTo(FamHisRightArrow);
 	}
-	
-	public void ClkFamHisRightArrow()
-	{
-		ac.ActionClassMoveTo(FamHisRightArrow);
+
+	public void ClkFamHisRightArrow() {
+		ac.actionClassMoveTo(FamHisRightArrow);
 	}
-	
-	public String FamHistoryOption1GetTxt()
-	{
+
+	public String FamHistoryOption1GetTxt() {
 		return FamHistoryOption1.getText();
 	}
-	
-	public String FamHistoryOption2GetTxt()
-	{
+
+	public String FamHistoryOption2GetTxt() {
 		return FamHistoryOption2.getText();
-		
+
 	}
-	
-	public void ValidateFamHisLarrowbtn()
-	{
-		ac.ActionClassMoveTo(FamHistoryOption1);
+
+	public void ValidateFamHisLarrowbtn() {
+		ac.actionClassMoveTo(FamHistoryOption1);
 	}
-	
-	public void ClkFHLftArrow()
-	{
-		ac.ActionClassMoveTo(FamHisLfttArrow);
+
+	public void ClkFHLftArrow() {
+		ac.actionClassMoveTo(FamHisLfttArrow);
 	}
-	
+
 	// Allergy
 
 	public void clickAllergyBx() {
@@ -358,59 +353,52 @@ public class ExistingMorbidities {
 
 	public void sendTextBx(String allergy) {
 
-		ac.ActionClass(AllergyTxtbx, allergy);
+		ac.actionClass(AllergyTxtbx, allergy);
 
 	}
-	
-	//Fitness Frequency
-	
-	public void ClickFitnessDropdown()
-	{
+
+	// Fitness Frequency
+
+	public void ClickFitnessDropdown() {
 		executor.executeScript("arguments[0].click();", FitnessDropdown);
-			
+
 	}
-	public void FitnessDropdownOption()
-	{
+
+	public void FitnessDropdownOption() {
 		executor.executeScript("arguments[0].click();", option);
-	
+
 	}
-	//Surgeries
-	
-	public void clickSurgeryCkbx()
-	{
-		ac.ActionClassMoveTo(surgeryCkBX);
+	// Surgeries
+
+	public void clickSurgeryCkbx() {
+		ac.actionClassMoveTo(surgeryCkBX);
 	}
-	
-	public void SendTxtSurgeryTxtbx(String surgery)
-	{
-		
-		ac.ActionClass(surgeryTxtbx, surgery);
+
+	public void SendTxtSurgeryTxtbx(String surgery) {
+
+		ac.actionClass(surgeryTxtbx, surgery);
 	}
-	
-	//International travel
-	
-	public void clickIntTravelChkbx()
-	{
+
+	// International travel
+
+	public void clickIntTravelChkbx() {
 		executor.executeScript("arguments[0].click();", IntTravelChkbx);
-	
+
 	}
-	
-	public void IntTravelTxtBx(String country)
-	{
-		ac.ActionClass(IntTravelTxtbx, country);
+
+	public void IntTravelTxtBx(String country) {
+		ac.actionClass(IntTravelTxtbx, country);
 	}
-	//Immunization
-	
-	public void ClickImmunizationDropdown()
-	{
-		executor.executeScript("arguments[0].click();",ImmunizationDropdown );
-		
+	// Immunization
+
+	public void ClickImmunizationDropdown() {
+		executor.executeScript("arguments[0].click();", ImmunizationDropdown);
+
 	}
-	public void ImmuneDropdownOption()
-	{
-		
-		executor.executeScript("arguments[0].click();",ImmunizationOption );
-		
+
+	public void ImmuneDropdownOption() {
+
+		executor.executeScript("arguments[0].click();", ImmunizationOption);
+
 	}
 }
-

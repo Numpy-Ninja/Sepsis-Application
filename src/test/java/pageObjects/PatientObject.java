@@ -10,16 +10,18 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import DriverFactory.BaseClass;
-import DriverFactory.abstractComponents;
+import driverFactory.AbstractComponents;
+import driverFactory.BaseClass;
 import utilities.ConfigReader;
 
-public class PatientObject extends abstractComponents {
+public class PatientObject {
 	public static WebDriver driver = BaseClass.getdriver();
-	abstractComponents ac = new abstractComponents();
+	AbstractComponents ac = new AbstractComponents(driver);
 	String SFurl = ConfigReader.getApplicationUrl();
 	String username = ConfigReader.getUsername();
 	String password = ConfigReader.getPassword();
+	JavascriptExecutor executor = (JavascriptExecutor) driver;
+
 	boolean isRequired;
 
 	// Locators
@@ -109,7 +111,6 @@ public class PatientObject extends abstractComponents {
 		login_button.click();
 		waffle_btn.click();
 		sepsisApp.click();
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", patient_object);
 		new_btn.click();
 
@@ -135,10 +136,10 @@ public class PatientObject extends abstractComponents {
 	}
 
 	public void personalInfo(String firstName, String lastName) {
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].scrollIntoView();", first_name);
 		first_name.click();
-		first_name.sendKeys(firstName);
+		ac.actionClass(first_name, firstName);
+		// first_name.sendKeys(firstName);
 		last_name.click();
 		last_name.sendKeys(lastName);
 		gender.click();
@@ -146,22 +147,22 @@ public class PatientObject extends abstractComponents {
 		dateOfBirth.click();
 		dateOfBirth.sendKeys("11/1/2023");
 	}
-	
+
 	public String checkFirstNameEntered() {
 		return first_name.getAttribute("value");
 	}
+
 	public String checkLastNameEntered() {
 		return last_name.getAttribute("value");
 	}
+
 	public String checkDOBSelected() {
 		return dateOfBirth.getAttribute("value");
 	}
 
 	public void emergencyInfo(String fullName, String emergencyContactNumber) {
 
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].scrollIntoView();", full_name);
-
 		full_name.click();
 		full_name.sendKeys(fullName);
 		emergency_contactnum.click();

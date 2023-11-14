@@ -10,6 +10,13 @@
           <include name="test"/>
         </methods>
       </class> <!-- Standalone -->
+      <class name="runner.TestRunnertestNG">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="6 7"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- runner.TestRunnertestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
