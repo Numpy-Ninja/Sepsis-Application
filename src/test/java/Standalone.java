@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 public class Standalone {
 	WebDriver driver;
 	WebDriverWait wait;
+	
 
 	@BeforeTest
 	public void setup() throws InterruptedException {
@@ -35,6 +36,7 @@ public class Standalone {
 		driver.findElement(By.id("password")).sendKeys("Salesforce@1");
 		driver.findElement(By.id("Login")).click();
 		Thread.sleep(3000);
+		Actions actions = new Actions(driver);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		WebElement waffle = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
 		executor.executeScript("arguments[0].click();", waffle);
@@ -61,10 +63,27 @@ public class Standalone {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@name='Last_Name__c']")).sendKeys("Sravanthi");
 
+		////Glucose dropdown
+		Thread.sleep(3000);
+		WebElement glucoseDropdown = driver.findElement(By.xpath(" (//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[15]"));
+		String javascript = "arguments[0].scrollIntoView()";
+		
+		executor.executeScript(javascript, glucoseDropdown);
+		System.out.println("glucose dropdown clicked");
+		
+		Thread.sleep(3000);
+		WebElement selectGlucoseOption = driver.findElement(By.xpath("//span[@title='HbA1c']"));
+		//actions.moveToElement(selectGlucoseOption).click().build().perform();
+
+		executor.executeScript("arguments[0].click();", selectGlucoseOption);
+		
+		Thread.sleep(5000);
+		System.out.println("glucose option clicked");
+		
 		// ExistingMorbidities
 
 		WebElement em = driver.findElement(By.xpath("(//span[@title='High Cholesterol'])[1]"));
-		String javascript = "arguments[0].scrollIntoView()";
+		
 		executor.executeScript(javascript, em);
 		em.click();
 
@@ -98,7 +117,7 @@ public class Standalone {
 
 		// habits
 		WebElement Habits=driver.findElement(By.xpath("//span[@title='Alcohol']"));
-		Actions actions = new Actions(driver);
+	
 		actions.moveToElement(Habits).click().build().perform();
 		driver.findElement(By.xpath("(//*[name()='path' and contains(@d,'M14 43.7V8')])[4]")).click();
 		driver.findElement(By.xpath("(//*[name()='path' and contains(@d,'M38 8.3v35')])[4]")).click();
@@ -196,7 +215,10 @@ public class Standalone {
 		WebElement opt = driver.findElement(By.xpath("//lightning-base-combobox-item[2]/span[2]/span"));
 
 		actions.moveToElement(opt).click().build().perform();
-
+		
+		//Glucose dropdown
+		
+	
 	}
 
 	@AfterTest

@@ -29,7 +29,7 @@ public class BaseClass {
 		if (browser.equals("chrome")) {
 			ChromeOptions option = new ChromeOptions();
 			option.addArguments("--disable-notifications");
-			WebDriverManager.chromedriver().setup();
+			//WebDriverManager.chromedriver().setup();
 
 			driver = new ChromeDriver(option);
 
