@@ -1,16 +1,20 @@
 package utilities;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
+import org.checkerframework.common.reflection.qual.GetClass;
 
-public class configReader {
+
+public class ConfigReader {
 
 	private static Properties prop;
 	private static String browserType = null;
-	private final static String propertyFilePath = ".\\src\\test\\resources\\config\\config.properties";
+	private final static String propertyFilePath = "config/Config.properties";
 
 	/**
 	 * This method is used to load the properties from config.properties file
@@ -19,8 +23,8 @@ public class configReader {
 	public static void init_prop() {
 
 		try {
-			FileInputStream fis;
-			fis = new FileInputStream(propertyFilePath);
+			InputStream fis;
+			fis = ConfigReader.class.getClassLoader().getResourceAsStream(propertyFilePath);
 			prop = new Properties();
 
 			try {
@@ -29,7 +33,7 @@ public class configReader {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Config.properties not found at" + propertyFilePath);
 		}
