@@ -283,7 +283,9 @@ public class PatientObject {
 	/// Medical History ///
 	public void medicalHistory(String heightInCm, String weightInKgs) {
 
-		height.click();
+		executor.executeScript("arguments[0].scrollIntoView()", height);
+		ac.actionClassMoveTo(height);
+		//height.click();
 		height_dropdown.click();
 		heightIn_cm.sendKeys(heightInCm);
 		weight.click();
