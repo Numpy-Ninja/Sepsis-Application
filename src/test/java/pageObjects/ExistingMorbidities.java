@@ -222,10 +222,9 @@ public class ExistingMorbidities {
 	}
 
 	public void ClickonRightarrow() {
-		
+		// ac.actionClassMoveTo(EmRightArrow);
 		executor.executeScript("arguments[0].scrollIntoView()", EmRightArrow);
-		ac.actionClassMoveTo(EmRightArrow);
-		//EmRightArrow.click();
+		EmRightArrow.click();
 	}
 
 	public String getText() {

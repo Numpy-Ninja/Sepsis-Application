@@ -1,0 +1,1 @@
+{"uuid":"e99717e4-ec1a-4b24-87bc-4dd896b63b37","name":"Scenario: check if user can register successfully with invalid username (only symbols)","children":["57c4811c-747b-4600-baf3-a8c897df1af1"],"befores":[],"afters":[],"start":1697517958250,"stop":1697517958252}
