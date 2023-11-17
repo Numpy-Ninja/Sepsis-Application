@@ -54,6 +54,34 @@ public class PatientObject {
 	WebElement gender_dropdown;
 	@FindBy(xpath = "//input[@name='DOB__c']")
 	WebElement dateOfBirth;
+	@FindBy (xpath="//button[@aria-label='Race & Ethnicity, --None--']")
+	WebElement raceethnicity_combobox;
+	@FindBy (xpath="//span[@title='Asian']")
+	WebElement raceethnicity_value;
+	@FindBy (xpath="//input[@name='Have_Insurance__c']")
+	WebElement insurance_checkbox;
+	@FindBy (xpath="//input[@name='Enter_Insurance_Details__c']")
+	WebElement insurance_textbox;
+	@FindBy (xpath="//button[@aria-label='Sepsis Status, --None--']")
+	WebElement sepsisstatus_dropdown;
+
+	/// Patient Contact Info //
+	@FindBy (xpath="//input[@name='Phone__c']")
+	WebElement phone_textbox;
+	@FindBy (xpath="//input[@name='Email__c']")
+	WebElement email_textbox;
+	@FindBy (xpath="//input[@aria-label='Address (Country/Territory)']")
+	WebElement country_dropdown;
+	@FindBy (xpath="//textarea[@name='street']")
+	WebElement address_textbox; 
+	@FindBy (xpath="//input[@name='city']")
+    WebElement city_textbox;
+	@FindBy (xpath="//input[@name='province']") 
+	WebElement state_combo;
+	@FindBy (xpath="//div/lightning-base-combobox-item[6]//span[2]/span[@title='California']") 
+	WebElement state_dropdown;
+	@FindBy (xpath="//input[@name='postalCode']")
+	WebElement zipcode_textbox;
 
 	/// EmergencyContact/////
 	@FindBy(xpath = "//input[@name='Full_Name__c']")
@@ -102,20 +130,6 @@ public class PatientObject {
 
 	}
 
-	public void Login(String username, String password) {
-
-		user.clear();
-		user.sendKeys(username);
-		pwd.clear();
-		pwd.sendKeys(password);
-		login_button.click();
-		waffle_btn.click();
-		sepsisApp.click();
-		executor.executeScript("arguments[0].click();", patient_object);
-		new_btn.click();
-
-	}
-
 	public void Name_Status(String status) {
 		if (status == "fail") {
 			System.out.println("Please enter alphabets");
@@ -134,8 +148,9 @@ public class PatientObject {
 		sepsisApp.click();
 
 	}
-
-	public void personalInfo(String firstName, String lastName) {
+	
+   /// Personal Info ///
+	public void personalInfo(String firstName, String lastName, String dob, String insuranceDetails ) {
 		executor.executeScript("arguments[0].scrollIntoView();", first_name);
 		first_name.click();
 		ac.actionClass(first_name, firstName);
@@ -144,8 +159,15 @@ public class PatientObject {
 		last_name.sendKeys(lastName);
 		gender.click();
 		gender_dropdown.click();
+		raceethnicity_combobox.click();
+		raceethnicity_value.click();
 		dateOfBirth.click();
-		dateOfBirth.sendKeys("11/1/2023");
+		dateOfBirth.sendKeys(dob);
+		insurance_checkbox.click();
+		//insurance_checkbox.isDisplayed();
+		//executor.executeScript("arguments[0].scrollIntoView();", insurance_textbox);
+	    insurance_textbox.click();
+		insurance_textbox.sendKeys(insuranceDetails);
 	}
 
 	public String checkFirstNameEntered() {
@@ -159,7 +181,51 @@ public class PatientObject {
 	public String checkDOBSelected() {
 		return dateOfBirth.getAttribute("value");
 	}
+	public String checkInsuranceDetailsEntered() {
+		return insurance_textbox.getAttribute("value");
+	}
+	
+	/// Patient contact Info //
+	public void ContactInfo(String phone, String emailAddress, String country, String street, String city, String pin  ) {
+		executor.executeScript("arguments[0].scrollIntoView();", phone_textbox);
+	    phone_textbox.click();
+		phone_textbox.sendKeys(phone);
+		email_textbox.click();
+		email_textbox.sendKeys(emailAddress);
+		//country_dropdown.click();
+		//country_dropdown.clear();
+		country_dropdown.sendKeys(country);
+		address_textbox.sendKeys(street);
+		city_textbox.sendKeys(city);
+		state_combo.click();
+		state_dropdown.click();
+		zipcode_textbox.sendKeys(pin);
+	}
+	
 
+	public String checkPhonenoEntered() {
+		return phone_textbox.getAttribute("value");
+	}
+	
+	public String checkEmailEntered() {
+		return email_textbox.getAttribute("value");
+	}
+	public String checkCountryEntered() {
+		return country_dropdown.getAttribute("value");
+	}
+	public String checkStreetEntered() {
+		return address_textbox.getAttribute("value");
+	}
+	public String checkCityEntered() {
+		return city_textbox.getAttribute("value");
+	}
+	public String checkStateEntered() {
+		return state_combo.getAttribute("value");
+	}
+	public String checkZipcodeEntered() {
+		return zipcode_textbox.getAttribute("value");
+	}
+   /// Emergency Contact///
 	public void emergencyInfo(String fullName, String emergencyContactNumber) {
 
 		executor.executeScript("arguments[0].scrollIntoView();", full_name);
@@ -183,7 +249,8 @@ public class PatientObject {
 	public String checkContactNumberEntered() {
 		return emergency_contactnum.getAttribute("value");
 	}
-
+   
+	/// ProviderInfo ///
 	public void providerInformation(String doctorName, String doctorContactNumber, String clinicName,
 			String doctorEmail) {
 
@@ -212,7 +279,8 @@ public class PatientObject {
 	public String checkDoctorEmailEntered() {
 		return doctor_email.getAttribute("value");
 	}
-
+ 
+	/// Medical History ///
 	public void medicalHistory(String heightInCm, String weightInKgs) {
 
 		height.click();
