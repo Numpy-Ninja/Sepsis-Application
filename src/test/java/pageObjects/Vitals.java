@@ -58,13 +58,16 @@ public class Vitals{
 	private static WebElement BP;
 	@FindBy (xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[15]") 
 	private static WebElement GlucoseDropdown;
-	@FindBy (xpath = "(//lightning-base-combobox[1]/div[1]/div[1]/div[1]/button[1])[13]") 
+	@FindBy (xpath = "//div/lightning-base-combobox-item[2]//span[2]/span[@title='Before BF']") 
 	private static WebElement GlucoseOption;
 	@FindBy (xpath = "//input[@name='Glucose_Value__c']") 
 	private static WebElement GlucoseValue;
 	@FindBy (xpath = "//input[@name='White_Blood_Cells_Leukocyte__c']") 
 	private static WebElement WBCcount;
-	
+	@FindBy (xpath = "//button[@name='SaveEdit']") 
+	private static WebElement SaveBtn;
+	@FindBy (xpath = "//lightning-formatted-text[@slot='primaryField']")
+	private static WebElement patientID;
 	
 	//Constructor
 	
@@ -195,7 +198,7 @@ public class Vitals{
 			}
 
 			public void VitalsBPClick() {
-				// TODO Auto-generated method stub
+				
 				BP.click();
 				
 			}
@@ -206,13 +209,21 @@ public class Vitals{
 			}
 
 			public void wbcclick() {
-				// TODO Auto-generated method stub
-			//		WBCcount.click();
+				
 				ac.actionClassMoveTo(WBCcount);
 			}
 			
 			
+			public void saveBtnclick() {
+								ac.actionClassMoveTo(SaveBtn);
+			}
 			
-			
-
+			public void validatePatientId(String patientId)
+			{
+				ac.actionClass(patientID,patientId );
+			}
+			public String getPatientId()
+			{
+				return patientID.getText();
+			}
 }
