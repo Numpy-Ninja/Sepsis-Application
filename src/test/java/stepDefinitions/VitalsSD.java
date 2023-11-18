@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.Given;
@@ -111,7 +113,16 @@ public class VitalsSD {
 	}
 
 	
-
+	@When("Patient clicks on save button")
+	public void patient_clicks_on_save_button() {
+	    vt.saveBtnclick();
+	}
+	@Then("the form should be  saved succesfully by creating patientId {string}")
+	public void the_form_should_be_saved_succesfully_by_creating_patientId (String expectedpatientId) {
+	  
+	    String actualPatientId =vt.getPatientId();		
+		assertEquals(actualPatientId,expectedpatientId) ;
+	}
 
 
 	

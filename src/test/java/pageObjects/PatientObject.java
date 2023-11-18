@@ -197,6 +197,7 @@ public class PatientObject {
 		country_dropdown.sendKeys(country);
 		address_textbox.sendKeys(street);
 		city_textbox.sendKeys(city);
+		executor.executeScript("arguments[0].scrollIntoView();", state_combo);
 		state_combo.click();
 		state_dropdown.click();
 		zipcode_textbox.sendKeys(pin);

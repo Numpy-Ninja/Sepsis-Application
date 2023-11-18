@@ -46,8 +46,9 @@ Feature: Validitate Existing Morbidities
   Scenario: Validate selecting Physical fitness options from available to chosen
     Given Patient  selects a fitness option in the list available
     When clicks on the right arrow
-    And clicks on the left arrow
-    Then Patient should be able to see the error msg "An option must be selected"
+   
+ Then Patient should able to see the selected option "Yoga" in the fitness chosen list box
+ 
 
   @TS_08ValidateFamilyHistory-moreoptionsavailabletochosen
   Scenario: Validate selecting Family History options more than one from available to chosen
@@ -59,7 +60,7 @@ Feature: Validitate Existing Morbidities
   Scenario: Validate selecting Family History left arrow from chosen to available
     Given Patient  selects an option holding from the list chosen
     When Patient clicks on the left arrow of Family History
-    Then Patient should not be  able to see the selected "Thyroid" in the chosen list box
+    Then Patient should not be  able to see the selected "Diabetes" in the chosen list box
 
   @TS_10ValidateFitnessFrequencyDropDown
   Scenario: Validate Fitness Frequency DropDown
