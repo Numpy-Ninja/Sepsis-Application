@@ -11,8 +11,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 
-import DriverFactory.BaseClass;
-
+import driverFactory.BaseClass;
 import utilities.ConfigReader;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;

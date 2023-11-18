@@ -144,10 +144,14 @@ public class ExistingMorbiditiesSD {
 		existingMorbidities.clickRightArrow();
 	}
 
-	@And("clicks on the left arrow")
-	public void clicks_on_the_left_arrow() {
-		existingMorbidities.clickLeftArrow();
+	@Then("Patient should able to see the selected option {string} in the fitness chosen list box")
+	public void patient_should_able_to_see_the_selected_option_in_the_fitness_chosen_list_box(String expectedfitnesOption) {
+		String actualfitnessOption =existingMorbidities.fitnessOptgetText();
+	
+		assertEquals(actualfitnessOption,expectedfitnesOption) ;
+	    
 	}
+
 
 
 	
@@ -179,7 +183,7 @@ public class ExistingMorbiditiesSD {
 	
 	@Then("Patient should not be  able to see the selected {string} in the chosen list box")
 	public void patient_should_not_be_able_to_see_the_selected_in_the_chosen_list_box(String expectedFHOption) {
-	    String actualFHOption = existingMorbidities.FamHistoryOption1GetTxt();
+	    String actualFHOption = existingMorbidities.FamHistoryOption2GetTxt();
 	    assertNotEquals(actualFHOption,expectedFHOption);
 	}
 

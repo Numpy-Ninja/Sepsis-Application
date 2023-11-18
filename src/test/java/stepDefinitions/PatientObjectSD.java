@@ -5,9 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeClass;
-
-import DriverFactory.BaseClass;
+import org.testng.annotations.BeforeClass; 
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -28,11 +26,56 @@ public class PatientObjectSD {
 	
 	@Given("Patient is on New patient form")
 	public void patient_is_on_new_patient_form() {
-		patient.SalesForcelogin_page();
-		patient.Login(ConfigReader.getUsername(),ConfigReader.getPassword());
+		//patient.SalesForcelogin_page();
+		//patient.Login(ConfigReader.getUsername(),ConfigReader.getPassword());
 		logger.info("Patient is on new patient form");
 
 	}
+	
+	@When("Patient enters {string},{string},Gender, Race, {string} and  {string} on personal information")
+	public void patient_enters_gender_race_and_on_personal_information(String firstName, String lastName, String dob, String insuranceDetails) {
+	  patient.personalInfo(firstName, lastName, dob, insuranceDetails);
+	}
+
+	@Then("Patient can see the {string},{string},{string},{string}and other details entered on personal information")
+	public void patient_can_see_the_and_other_details_entered_on_personal_information(String firstName, String lastName, String dob, String insuranceDetails) {
+		String firtnameAct = patient.checkFirstNameEntered();
+		String lastnameAct = patient.checkLastNameEntered();
+		String doBAct= patient.checkDOBSelected();
+		String insurDetailsAct=patient.checkInsuranceDetailsEntered();
+		assertEquals(firtnameAct, firstName);
+		assertEquals(lastnameAct, lastName);
+		assertEquals(doBAct, dob);
+		assertEquals(insurDetailsAct, insuranceDetails);
+	}
+	
+	@Given("Patient is on same patient form")
+	public void patient_is_on_same_patient_form() {
+		logger.info("Patient is on same patient form");	
+	}
+	
+	@When("Patient enters the {string} , {string}, {string}, {string},{string} and {string} on contact information")
+	public void patient_enters_the_and_on_contact_information(String phNo, String email, String country, String street, String city, String zip) {
+	    patient.ContactInfo(phNo, email, country, street, city, zip);
+	}
+
+	@Then("Patient can see the {string} , {string}, {string}, {string},{string} and {string} entered on contact information")
+	public void patient_can_see_the_and_entered_on_contact_information(String phNo, String email, String country, String street, String city, String zip) {
+		String phNumber = patient.checkPhonenoEntered();
+		String emailAdd = patient.checkEmailEntered();
+		String countryAct= patient.checkCountryEntered();
+		String streetAct=patient.checkStreetEntered();
+		String cityAct=patient.checkCityEntered();
+		String zipAct=patient.checkZipcodeEntered();
+		assertEquals(phNumber, phNo);
+		assertEquals(emailAdd, email);
+		assertEquals(countryAct, country);
+		assertEquals(streetAct, street);
+		assertEquals(cityAct, city);
+		assertEquals(zipAct, zip);
+
+	}
+
 	@When("Patient enters {string} and {string}")
 	public void patient_enters (String fullname, String contactnumber) {
 		patient.emergencyInfo(fullname, contactnumber);
@@ -46,11 +89,6 @@ public class PatientObjectSD {
 		assertEquals(fullName, fullname);
 		assertEquals(contactNumber, contactnumber);
 
-	}
-	
-	@Given("Patient is on same patient form")
-	public void patient_is_on_same_patient_form() {
-		logger.info("Patient is on same patient form");	
 	}
 	
 	@When("Patient enters {string} and {string} and {string} and {string}")
@@ -84,18 +122,4 @@ public class PatientObjectSD {
 		assertEquals(weight, weightInKg);
 	}
 	
-	@When("Patient enters {string} and {string} Gender and DOB on personal information")
-	public void patient_enters_and_on_personal_information(String firstName, String lastName) {
-		patient.personalInfo(firstName, lastName);
-
-	}
-
-	@Then("Patient can see the {string} and {string} and other details entered on personal information")
-	public void patient_can_see_the_and_and_other_details_entered_on_personal_information(String firstName, String lastName) {
-		String firtname = patient.checkFirstNameEntered();
-		String lastname = patient.checkLastNameEntered();
-		assertEquals(firtname, firstName);
-		assertEquals(lastname, lastName);
-		assertEquals(patient.checkDOBSelected(), "11/1/2023");
-	}
 }
