@@ -53,14 +53,18 @@ public class ExistingMorbidities {
 	// @FindBy (xpath="(//span[contains(text(),'An option must be selected')]")
 	@FindBy(xpath = "(//span[@class='slds-has-error slds-form-element__help'])[1]")
 	private static WebElement ErrorMsg;
-	@FindBy(xpath = "(//span[@title='Other'])[1]")
+	@FindBy(xpath = "(//div[@class='slds-dueling-list__options']//li[11]//span[@title='Other'])[1]")
 	private static WebElement ExistMorbidityOther;
 	@FindBy(xpath = "//input[@name='Comment_Here__c']")
 	private static WebElement otherTextBox;
+	@FindBy(xpath = "//h3/span[@title='Existing Morbidities']")
+	private static WebElement EmTitle;
+	
+	
 
 	// Existing Infections
 
-	@FindBy(xpath = "//span[@title='Others']")
+	@FindBy(xpath = "//div[@class='slds-dueling-list__options']//li[8]//span[@title='Others']")
 	private static WebElement ExistInfectionOther;
 	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M14 43.7V8')])[2]")
 	private static WebElement EinfRightArrow;
@@ -87,7 +91,7 @@ public class ExistingMorbidities {
 
 	@FindBy(xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[14]")
 	private static WebElement FitnessDropdown;
-	@FindBy(xpath = "(//span[@class='slds-media__figure slds-listbox__option-icon'])[2]") // "(//lightning-base-combobox-item[3]/span[2]/span)[2]")
+	@FindBy(xpath = "//div/lightning-base-combobox-item[2]//span[2]/span[@title='3 to 5 days a week']" )
 	private static WebElement option;
 
 	// Surgeries
@@ -107,14 +111,14 @@ public class ExistingMorbidities {
 
 	@FindBy(xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[13]")
 	private static WebElement ImmunizationDropdown;
-	@FindBy(xpath = "(//lightning-base-combobox-item [2]/span[2]/span)[1]")
+	@FindBy(xpath ="//div/lightning-base-combobox-item[2]//span[2]/span[@title='Up to date']")
 	private static WebElement ImmunizationOption;
 
 	// Physical Fitness
 
-	@FindBy(xpath = "(//div/ul/li[3]/div/span/span)[5]")
+	@FindBy(xpath = "//div[@class='slds-dueling-list__options']//li//span[@title='Yoga']")
 	private static WebElement PhysicalFitnessOption;
-	@FindBy(xpath = "(//button[@title='Move selection to Chosen'])[5]")
+	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M14 43.7V8')])[5]")
 	private static WebElement PFRightArrow;
 	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M38 8.3v35')])[5]")
 	private static WebElement PFleftArrow;
@@ -124,9 +128,9 @@ public class ExistingMorbidities {
 	private static WebElement FamHistoryOption;
 	@FindBy(xpath = "(//button[@title='Move selection to Chosen'])[3]")
 	private static WebElement FamHisRightArrow;
-	@FindBy(xpath = "(//div/ul/li[2]/div/span/span)[3]")
+	@FindBy(xpath = "(//div[@class='slds-dueling-list__options']//li//span[@title='Diabetes'])[2]")
 	private static WebElement FamHistoryOption1;
-	@FindBy(xpath = "(//div/ul/li[3]/div/span/span)[3]")
+	@FindBy(xpath = "(//div[@class='slds-dueling-list__options']//li//span[@title='Thyroid'])[2]")
 	private static WebElement FamHistoryOption2;
 	@FindBy(xpath = "(//button[@title='Move selection to Available'])[3]")
 	private static WebElement FamHisLfttArrow;
@@ -243,7 +247,7 @@ public class ExistingMorbidities {
 
 	public void ValidateExistMorbidityOther() {
 		//ac.actionClassMoveTo(ExistMorbidityOther);
-		executor.executeScript("arguments[0].scrollIntoView()", EmRightArrow);
+		executor.executeScript("arguments[0].scrollIntoView()", EmTitle);
 
 		executor.executeScript("arguments[0].scrollIntoView()", ExistMorbidityOther);
 		ExistMorbidityOther.click();
@@ -301,7 +305,11 @@ public class ExistingMorbidities {
 	}
 //Physical Fitness
 
-	public void selectPFOption() {
+	public void selectPFOption()
+	{
+		String javascript = "arguments[0].scrollIntoView()";
+		executor.executeScript(javascript, HabitOption);
+	
 		ac.actionClassMoveTo(PhysicalFitnessOption);
 	}
 
@@ -309,14 +317,12 @@ public class ExistingMorbidities {
 		ac.actionClassMoveTo(PFRightArrow);
 	}
 
-	public void clickLeftArrow() {
-		ac.actionClassMoveTo(PFleftArrow);
+	
+public String fitnessOptgetText() {
+		
+		return PhysicalFitnessOption.getText();
 	}
-
-	public String validateErrormsgPF() {
-		String errorMsg = ErrorMsg.getText();
-		return errorMsg;
-	}
+	
 
 	// Family History
 
@@ -332,6 +338,8 @@ public class ExistingMorbidities {
 	}
 
 	public String FamHistoryOption1GetTxt() {
+		System.out.println( FamHistoryOption1.getText());
+		
 		return FamHistoryOption1.getText();
 	}
 
@@ -351,6 +359,9 @@ public class ExistingMorbidities {
 	// Allergy
 
 	public void clickAllergyBx() {
+
+		String javascript = "arguments[0].scrollIntoView()";
+		executor.executeScript(javascript, AllergyChkbx);
 		executor.executeScript("arguments[0].click();", AllergyChkbx);
 	}
 
@@ -368,7 +379,8 @@ public class ExistingMorbidities {
 	}
 
 	public void FitnessDropdownOption() {
-		executor.executeScript("arguments[0].click();", option);
+		//executor.executeScript("arguments[0].click();", option);
+		ac.actionClassMoveTo(option);
 
 	}
 	// Surgeries
@@ -401,7 +413,10 @@ public class ExistingMorbidities {
 
 	public void ImmuneDropdownOption() {
 
-		executor.executeScript("arguments[0].click();", ImmunizationOption);
+		//executor.executeScript("arguments[0].click();", ImmunizationOption);
+		ac.actionClassMoveTo(ImmunizationOption);
 
 	}
+
+	
 }

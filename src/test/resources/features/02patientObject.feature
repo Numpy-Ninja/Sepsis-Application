@@ -21,7 +21,7 @@ Feature: Validating the New Patient information
     
     Examples:
     | phoneNo | emailAddress | country | street | city | zip |
-    |815-456-9999 | kelly@gmail.com | United States | Egmore St | Bayarea  | 760983|
+    |815-456-9999 | kelly@gmail.com | United States | Egmore St | Bayarea  |77433|
 
   @TS_03_ValidateEmergencycontact
   Scenario Outline: Validating the EmergencyContact
