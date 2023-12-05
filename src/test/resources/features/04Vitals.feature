@@ -53,4 +53,4 @@ Feature: Validating Medication and Vitals Information
   Scenario: Validate Save Button
     Given Patient is on Sepsis App Patients page
     When Patient clicks on save button
-    Then the form should be  saved succesfully by creating patientId "PT-0086"
+    Then the form should be  saved succesfully by displaying a message 

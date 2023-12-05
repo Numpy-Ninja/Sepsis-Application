@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -97,7 +98,7 @@ public class ExistingMorbidities {
 	// Surgeries
 	@FindBy(xpath = "//input[@name='Surgeries_with_in_6_months__c']")
 	private static WebElement surgeryCkBX;
-	@FindBy(xpath = "//input[@name='how_to_make_a_text_box_visble_if_a_check__c']")
+	@FindBy(xpath = "//input[@name='how_to_make_a_text_box_visble_if_a_check__c' and @type='text']")
 	private static WebElement surgeryTxtbx;
 
 	// Internation Travel
@@ -174,7 +175,7 @@ public class ExistingMorbidities {
 	}
 
 	public void sepsisApp_click() {
-		// waitForElementToappear(sepsisApp);
+		ac.waitForElementToappear(sepsisApp);
 		sepsisApp.click();
 	}
 
@@ -188,12 +189,7 @@ public class ExistingMorbidities {
 		ac.waitForElementToappear(new_btn);
 		new_btn.click();
 	}
-//public void next_btn()
-//{
-//	JavascriptExecutor executor = (JavascriptExecutor)driver;
-//  executor.executeScript("arguments[0].click();",next_btn );
-//
-//}
+
 
 	public void enterFirstName(String First_Name) {
 		ac.waitForElementToappear(first_name);
@@ -229,7 +225,7 @@ public class ExistingMorbidities {
 		
 		executor.executeScript("arguments[0].scrollIntoView()", EmRightArrow);
 		ac.actionClassMoveTo(EmRightArrow);
-		//EmRightArrow.click();
+		
 	}
 
 	public String getText() {
@@ -246,7 +242,7 @@ public class ExistingMorbidities {
 	}
 
 	public void ValidateExistMorbidityOther() {
-		//ac.actionClassMoveTo(ExistMorbidityOther);
+		
 		executor.executeScript("arguments[0].scrollIntoView()", EmTitle);
 
 		executor.executeScript("arguments[0].scrollIntoView()", ExistMorbidityOther);
@@ -379,19 +375,36 @@ public String fitnessOptgetText() {
 	}
 
 	public void FitnessDropdownOption() {
-		//executor.executeScript("arguments[0].click();", option);
+	
 		ac.actionClassMoveTo(option);
 
 	}
 	// Surgeries
 
 	public void clickSurgeryCkbx() {
-		ac.actionClassMoveTo(surgeryCkBX);
+	
+		executor.executeScript("arguments[0].click();", surgeryCkBX);
 	}
 
-	public void SendTxtSurgeryTxtbx(String surgery) {
-
-		ac.actionClass(surgeryTxtbx, surgery);
+	public void surgeryTxtbx(String surgery) throws InterruptedException {
+		//executor.executeScript("arguments[0].scrollIntoView()", surgeryTxtbx);
+		//ac.waitForElementToappear(surgeryTxtbx);
+		//ac.actionClass(surgeryTxtbx, surgery);
+		//surgeryTxtbx.sendKeys(surgery);
+		WebElement surgeries = driver.findElement(By.xpath("//input[@name='Surgeries_with_in_6_months__c']"));
+        Thread.sleep(3000);
+		String javascript = "arguments[0].scrollIntoView()";
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript(javascript,surgeries);
+		
+		Thread.sleep(3000);
+		surgeries.click();
+		Thread.sleep(3000);
+		//actions.moveToElement(surgeries).click().build().perform();
+		WebElement surgeryTxTbx=driver.findElement(By.xpath("//input[@name='how_to_make_a_text_box_visble_if_a_check__c']"));
+        ac.actionClass(surgeryTxTbx, surgery);
+		
+		
 	}
 
 	// International travel

@@ -46,9 +46,7 @@ Feature: Validitate Existing Morbidities
   Scenario: Validate selecting Physical fitness options from available to chosen
     Given Patient  selects a fitness option in the list available
     When clicks on the right arrow
-   
- Then Patient should able to see the selected option "Yoga" in the fitness chosen list box
- 
+    Then Patient should able to see the selected option "Yoga" in the fitness chosen list box
 
   @TS_08ValidateFamilyHistory-moreoptionsavailabletochosen
   Scenario: Validate selecting Family History options more than one from available to chosen
@@ -72,7 +70,7 @@ Feature: Validitate Existing Morbidities
   Scenario: Validate the Surgeries Checkbox
     Given Patient is on existing morbidities section
     When Patient selects the surgeries check box
-    Then Patient should be able enter the text "N/A" in the text box
+    Then Patient should be able enter the text "Heart Surgery" in the text box
 
   @TS_12ValidateImmunizationDropDown
   Scenario: Validate Immunization DropDown

@@ -36,6 +36,7 @@ public class SalesforceLoginSepsis {
 	private static WebElement new_btn;
 	@FindBy(xpath = "//h2[contains(text(),'New Patient:')]")
 	private static WebElement new_patient;
+	
 
 	public SalesforceLoginSepsis() {
 
@@ -82,7 +83,7 @@ public class SalesforceLoginSepsis {
 		executor.executeScript("arguments[0].click();", patient_object);
 
 	}
-
+	
 	public void selectNew() {
 		ac.waitForElementToappear(new_btn);
 		new_btn.click();
