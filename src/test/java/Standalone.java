@@ -1,6 +1,11 @@
+import static org.testng.Assert.assertEquals;
+
+import java.util.List;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +20,8 @@ import org.testng.annotations.Test;
 public class Standalone {
 	WebDriver driver;
 	WebDriverWait wait;
-	
+
+	// Actions actions = new Actions(driver);
 
 	@BeforeTest
 	public void setup() throws InterruptedException {
@@ -25,20 +31,13 @@ public class Standalone {
 		driver = new ChromeDriver(option);
 
 		driver.get("http://login.salesforce.com");
-
-	}
-
-	@Test
-	public void test() throws InterruptedException
-
-	{
 		driver.findElement(By.id("username")).sendKeys("numpyninjaworkforce@gmail.com");
 		driver.findElement(By.id("password")).sendKeys("Salesforce@1");
 		driver.findElement(By.id("Login")).click();
 		Thread.sleep(3000);
-		Actions actions = new Actions(driver);
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
+
 		WebElement waffle = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", waffle);
 		Thread.sleep(3000);
 
@@ -48,14 +47,31 @@ public class Standalone {
 
 		executor.executeScript("arguments[0].click();", element);
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//div[contains(text(),'New')]")).click();
-//	WebElement radiobuttonNP = driver.findElement(By.cssSelector("div:nth-child(3) .slds-radio--faux"));
-//      executor.executeScript("arguments[0].click();", radiobuttonNP);
+
+	}
+
+	@Test
+	public void test() throws InterruptedException
+
+	{
+
+		
+		WebElement listview = driver.findElement(By.xpath("//button[@title='Select a List View: Patients']"));
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", listview);
+		Thread.sleep(3000);////a[@class='toggle slds-th__action slds-text-link--reset ']
+		WebElement selectlist = driver.findElement(By.xpath("//span[normalize-space()='Existing Patients List View']"));
+		executor.executeScript("arguments[0].click();", selectlist);
 		Thread.sleep(3000);
-//      WebElement next = driver.findElement(By.xpath("//span[contains(.,'Next')]"));
-//      executor.executeScript("arguments[0].click();", next);
-//    WebElement newform=  driver.findElement(By.linkText("New"));
-//    executor.executeScript("arguments[0].click();", newform);
+		WebElement toggle = driver
+				.findElement(By.xpath("//thead/tr/th[3]/div/span"));
+		executor.executeScript("arguments[0].click();", toggle);
+		WebElement firstElement = driver
+				.findElement(By.xpath("//tbody/tr[1]/th[1]/span[1]/a[1]"));
+		System.out.println(firstElement.getText().substring(4, 7));
+		
+		driver.findElement(By.xpath("//div[contains(text(),'New')]")).click();
+
 		Thread.sleep(3000);
 
 		WebElement name = driver.findElement(By.xpath("//input[@name='First_Name__c']"));
@@ -63,11 +79,11 @@ public class Standalone {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@name='Last_Name__c']")).sendKeys("Sravanthi");
 
-		////Glucose dropdown
+		//Glucose dropdown
 		Thread.sleep(3000);
 		WebElement glucoseDropdown = driver.findElement(By.xpath(" (//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[15]"));
 		String javascript = "arguments[0].scrollIntoView()";
-		
+	
 		executor.executeScript(javascript, glucoseDropdown);
 		System.out.println("glucose dropdown clicked");
 		
@@ -84,6 +100,8 @@ public class Standalone {
 
 		WebElement em = driver.findElement(By.xpath("(//span[@title='High Cholesterol'])[1]"));
 		
+	
+
 		executor.executeScript(javascript, em);
 		em.click();
 
@@ -103,9 +121,9 @@ public class Standalone {
 
 		Thread.sleep(3000);
 
-		// assertion
 
-		// Allergy
+
+	// Allergy
 
    WebElement allergy=driver.findElement(By.xpath("//input[@type='checkbox' and @name='Allergies__c']"));
 	 executor.executeScript("arguments[0].click();", allergy);
@@ -113,11 +131,11 @@ public class Standalone {
 	 Thread.sleep(3000);
 	 WebElement allergytextbox = driver.findElement(By.xpath("//input[@class='slds-input' and @name='Allergy_Type__c']"));
 	 allergytextbox.sendKeys("peanut");
-	
+
 
 		// habits
 		WebElement Habits=driver.findElement(By.xpath("//span[@title='Alcohol']"));
-	
+		Actions actions = new Actions(driver);
 		actions.moveToElement(Habits).click().build().perform();
 		driver.findElement(By.xpath("(//*[name()='path' and contains(@d,'M14 43.7V8')])[4]")).click();
 		driver.findElement(By.xpath("(//*[name()='path' and contains(@d,'M38 8.3v35')])[4]")).click();
@@ -167,21 +185,6 @@ public class Standalone {
 		
 		actions.moveToElement(leftarrow).click().build().perform();
 		
-//		WebElement undoPF = driver.findElement(By.xpath("(//*[name()='path' and contains(@d,'M30.3 12.6c10')])[1]"));
-//		actions.moveToElement(undoPF).click().build().perform();
-//		System.out.println(error);
-//		Thread.sleep(2000);
-//		WebElement walking = driver.findElement(By.xpath("//span[@title='Walking']"));
-//		actions.moveToElement(walking).click().build().perform();
-//
-//		// driver.findElement(By.xpath("(//*[name()='path' and contains(@d,'M14
-//		// 43.7V8')])[5]")).click();
-//		Thread.sleep(2000);
-//		actions.moveToElement(PfArrow).click().build().perform();
-//		// LAPhysical.click();
-//		Thread.sleep(2000);
-
-		// Fitness Frequency
 
 		WebElement DropDown = driver.findElement(
 				By.xpath("(//div[@class='slds-combobox_container'])[14]"));
@@ -202,8 +205,17 @@ public class Standalone {
 		// country.sendKeys("India");
 
 		// Surgeries
+
 		WebElement surgeries = driver.findElement(By.xpath("//input[@name='Surgeries_with_in_6_months__c']"));
-		actions.moveToElement(surgeries).click().build().perform();
+		Thread.sleep(3000);
+		String javascript1 = "arguments[0].scrollIntoView()";
+		JavascriptExecutor executor2 = (JavascriptExecutor) driver;
+		executor2.executeScript(javascript1, surgeries);
+
+		Thread.sleep(3000);
+		surgeries.click();
+		Thread.sleep(3000);
+		// actions.moveToElement(surgeries).click().build().perform();
 		driver.findElement(By.xpath("//input[@name='how_to_make_a_text_box_visble_if_a_check__c']")).sendKeys("N/A");
 
 		// Immunization
@@ -216,9 +228,53 @@ public class Standalone {
 
 		actions.moveToElement(opt).click().build().perform();
 		
-		//Glucose dropdown
+
+	}
+
+	@Test
+	public void uploadFiletest() throws InterruptedException {
+		driver.manage().window().maximize();
+
+	WebElement listview = driver.findElement(By.xpath("//button[@title='Select a List View: Patients']"));
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", listview);
+		Thread.sleep(3000);////a[@class='toggle slds-th__action slds-text-link--reset ']
+		WebElement selectlist = driver.findElement(By.xpath("//span[normalize-space()='Existing Patients List View']"));
+		executor.executeScript("arguments[0].click();", selectlist);
+		Thread.sleep(3000);
+		WebElement toggle = driver
+				.findElement(By.xpath("//thead/tr/th[3]/div/span"));
+		executor.executeScript("arguments[0].click();", toggle);
 		
-	
+		
+Thread.sleep(3000);
+		WebElement firstElement = driver
+				.findElement(By.xpath("//tbody/tr[1]/th[1]/span[1]/a[1]"));
+
+		executor.executeScript("arguments[0].click();",firstElement);
+		Thread.sleep(3000);
+
+		Thread.sleep(3000);
+		WebElement relatedTab=driver.findElement(By.xpath("//a[@id='relatedListsTab__item']"));
+		executor.executeScript("arguments[0].click();", relatedTab);
+		WebElement upfile = driver.findElement(By.xpath("(//input[@type='file'])[1]"));
+		WebElement uploadbtn = driver.findElement(
+				By.xpath("(//span[@class='slds-file-selector__button slds-button slds-button_neutral'])[1]"));
+		
+		Thread.sleep(3000);
+		upfile.sendKeys("C:\\Users\\shrav\\Downloads\\image (2).png");
+		System.out.println("file uploaded");
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("(//span[@class=' label bBody'])[3] ")).click();
+		Thread.sleep(3000);
+		WebElement uploadAlert = driver
+				.findElement(By.xpath("//span[@class='toastMessage slds-text-heading--small forceActionsText']"));
+		//Alert alert = driver.switchTo().alert();
+
+		String s = uploadAlert.getText();
+		System.out.println(s);// 1 file was added to the Patient.
+		assertEquals(s, "1 file was added to the Patient.");
+
 	}
 
 	@AfterTest

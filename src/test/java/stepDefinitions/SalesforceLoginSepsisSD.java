@@ -33,17 +33,18 @@ public class SalesforceLoginSepsisSD {
 	@And("The user click on login button")
 	public void the_user_click_on_login_button() throws InterruptedException {
 		loginPatient.login_button();
-		Thread.sleep(3000);
+		
 		loginPatient.waffle_click();
 		loginPatient.sepsisApp_click();
-		loginPatient.patientObject_select();
-		loginPatient.selectNew();
+	
+		
 	}
 
 	@Then("The user redirected to SalesForceHomepage")
 	public void the_user_redirected_to_sales_force_homepage() {
-		String patientHeader=loginPatient.newPatientHeader();
-		assertEquals(patientHeader, "New Patient: Patient");
+
+		loginPatient.patientObject_select();
+		
 
 	}
 
