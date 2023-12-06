@@ -67,8 +67,21 @@ public class Vitals{
 	@FindBy (xpath = "//button[@name='SaveEdit']") 
 	private static WebElement SaveBtn;
 	@FindBy (xpath = "//lightning-formatted-text[@slot='primaryField']")
-	private static WebElement patientID;
+	private static WebElement patientID;	
+	@FindBy (xpath = "//span[@class='toastMessage slds-text-heading--small forceActionsText']")
+	private static WebElement alertMsgSave;
 	
+	@FindBy(xpath="//button[@title='Select a List View: Patients']")
+	private static WebElement listView;
+	@FindBy(xpath="//span[normalize-space()='Existing Patients List View']")
+	private static WebElement existingPatientList;
+	@FindBy(xpath="//thead/tr/th[3]/div/span")
+	private static WebElement sortToggle;
+	@FindBy(xpath="//tbody/tr[1]/th[1]/span[1]/a[1]")
+	private static WebElement lastElement;
+	@FindBy(xpath="//lightning-formatted-text[@slot='primaryField']")
+	private static WebElement LastpatientId;
+
 	//Constructor
 	
 			public Vitals() {
@@ -222,8 +235,47 @@ public class Vitals{
 			{
 				ac.actionClass(patientID,patientId );
 			}
-			public String getPatientId()
+			public String getalertMsg()
 			{
-				return patientID.getText();
+				System.out.println(alertMsgSave.getText());
+				return alertMsgSave.getText();
+			}
+			public void selectListView() {
+				ac.waitForElementToappear(listView);
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0].click();",listView );
+				
+			}
+
+			public void selectExistPatientView() {
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0].click();",existingPatientList );
+			}
+			
+			public void SortDesc()
+			{
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0].click();",sortToggle );
+			}
+			
+			
+			public String getLastElementText()
+			{
+				
+				//System.out.println( lastElement.getText());
+				ac.waitForElementToappear(LastpatientId);
+				return LastpatientId.getText();
+			}
+			public String getExpectedMsg()
+			{
+				
+				String lastRecord = getLastElementText().substring(3, 7);
+				System.out.println(lastRecord);//pt-0164
+
+				char quotes = '"';
+				String expectedAlertMsg = "Patient \"PT-" + lastRecord + quotes + " was created.";
+				System.out.println(expectedAlertMsg);
+				return expectedAlertMsg;
+				
 			}
 }

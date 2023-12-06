@@ -1,0 +1,1498 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Extent</title>
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/css/spark-style.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@7cc78ce/spark/js/jsontree.js"></script>
+<style type="text/css"></style></head><body class="spa bdd-report dark">
+  <div class="app">
+    <div class="layout">
+<div class="header navbar">
+<div class="vheader">
+<div class="nav-logo">
+<a href="#">
+<div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png')"></div>
+</a>
+</div>
+<ul class="nav-left">
+<li class="search-box">
+<a class="search-toggle" href="#">
+<i class="search-icon fa fa-search"></i>
+<i class="search-icon-close fa fa-close"></i>
+</a>
+</li>
+<li class="search-input"><input id="search-tests" class="form-control" type="text" placeholder="Search..."></li>
+</ul>
+<ul class="nav-right">
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Grasshopper Report</span></a>
+</li>
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Nov 13, 2023 11:29:08 PM</span></a>
+</li>
+</ul>
+</div>
+</div><div class="side-nav">
+<div class="side-nav-inner">
+<ul class="side-nav-menu">
+<li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+<a id="nav-dashboard" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bar-chart"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('test-view')">
+<a id="nav-test" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('category-view')">
+<a id="nav-category" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-tag"></i></span>
+</a>
+</li>
+</ul>
+</div>
+</div>      <div class="vcontainer">
+        <div class="main-content">
+<div class="container-fluid p-4 view dashboard-view">
+<div class="row">
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Started</p>
+<h3>Nov 13, 2023 11:29:08 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Ended</p>
+<h3>Nov 13, 2023 11:29:38 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-pass">Features Passed</p>
+<h3>1</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-fail">Features Failed</p>
+<h3>0</h3>
+</div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Features</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='parent-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'>
+<b>1</b> features passed
+</small>
+</div>
+<div>
+<small data-tooltip='0%'><b>0</b> features failed,
+<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Scenarios</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='child-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'><b>14</b> scenarios passed</small></div>
+<div>
+<small data-tooltip='0%'><b>0</b> scenarios failed,
+<b>0</b> skipped, <b data-tooltip='%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Steps</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='grandchild-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'><b>49</b> steps passed</small></div>
+<div>
+<small data-tooltip='0%'><b>0</b> steps failed,
+<b>0</b> skipped, <b data-tooltip='%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><div class="col-md-12">
+<div class="card"><div class="card-header"><p>Timeline</p></div>
+<div class="card-body pt-0"><div>
+<canvas id="timeline" height="120"></canvas>
+</div></div>
+</div>
+</div></div>
+<script>
+var timeline = {
+"Validitate Existing Morbidities":22.565
+};
+</script>
+<div class="row">
+<div class="col-lg-6 col-md-12 category-container">
+<div class="card">
+<div class="card-header"><p>Tags</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
+<tr>
+<td>@TS_06ValidateTheotherTextboxinExistingInfections</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_05ValidateTheAllergyCheckbox</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_12ValidateTheSurgeriesCheckbox</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_10ValidateFamilyHistory-leftarrowbtn</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_03ValidateUndoExistingMorbidities</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_02ValidateExistingMorbidities-availabletochosen</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_08ValidatePhysicalFitnessoption-availabletochosen</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_09ValidateFamilyHistory-moreoptionsavailabletochosen</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_04ValidateTheotherTextbox</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_13ValidateImmunizationDropDown</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_11ValidateFitnessFrequencyDropDown</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_01LoginPage</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_07ValidateHabitsOption-availabletochosen</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@TS_14ValidateInternationalTravelCheckbox</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ExistingMorbidities</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 sysenv-container">
+<div class="card">
+<div class="card-header"><p>System/Environment</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr>
+<td>AppName</td>
+<td>SalesForceSepsisApplication</td>
+</tr>
+<tr>
+<td>user</td>
+<td>VeenaShravanthi</td>
+</tr>
+<tr>
+<td>os</td>
+<td>window</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var statusGroup = {
+parentCount: 5,
+passParent: 1,
+failParent: 0,
+warningParent: 0,
+skipParent: 0,
+childCount: 5,
+passChild: 14,
+failChild: 0,
+warningChild: 0,
+skipChild: 0,
+infoChild: 0,
+grandChildCount: 5,
+passGrandChild: 49,
+failGrandChild: 0,
+warningGrandChild: 0,
+skipGrandChild: 0,
+infoGrandChild: 0,
+eventsCount: 5,
+};
+</script><div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+<ul class="tools pull-left">
+<li><a href="#"><span class="font-size-14">Tests</span></a></li>
+</ul>
+<ul class="tools text-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+<ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<div class="dropdown-divider"></div>
+<a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
+<ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" href="#">@TS_06ValidateTheotherTextboxinExistingInfections</a><a class="dropdown-item" href="#">@TS_05ValidateTheAllergyCheckbox</a><a class="dropdown-item" href="#">@TS_12ValidateTheSurgeriesCheckbox</a><a class="dropdown-item" href="#">@TS_10ValidateFamilyHistory-leftarrowbtn</a><a class="dropdown-item" href="#">@TS_03ValidateUndoExistingMorbidities</a><a class="dropdown-item" href="#">@TS_02ValidateExistingMorbidities-availabletochosen</a><a class="dropdown-item" href="#">@TS_08ValidatePhysicalFitnessoption-availabletochosen</a><a class="dropdown-item" href="#">@TS_09ValidateFamilyHistory-moreoptionsavailabletochosen</a><a class="dropdown-item" href="#">@TS_04ValidateTheotherTextbox</a><a class="dropdown-item" href="#">@TS_13ValidateImmunizationDropDown</a><a class="dropdown-item" href="#">@TS_11ValidateFitnessFrequencyDropDown</a><a class="dropdown-item" href="#">@TS_01LoginPage</a><a class="dropdown-item" href="#">@TS_07ValidateHabitsOption-availabletochosen</a><a class="dropdown-item" href="#">@TS_14ValidateInternationalTravelCheckbox</a><a class="dropdown-item" href="#">@ExistingMorbidities</a>
+</ul>
+</li>
+</ul>
+</div>    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item"  status="pass" test-id="1"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Validitate Existing Morbidities</p>
+            <p class="text-sm">
+              <span>11:29:15 PM</span> / <span>00:00:22:565</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Validitate Existing Morbidities</h5>
+<span class='badge badge-success'>11.13.2023 11:29:15 PM</span>
+<span class='badge badge-danger'>11.13.2023 11:29:37 PM</span>
+<span class='badge badge-default'>00:00:22:565</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>
+<div class="accordion mt-4">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Validate loginPage</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.commonSD.the_patient_is_on_signin_page_of_salesforce_application()">
+                <span>Given The patient is on Signin page of salesforce application</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.commonSD.the_patient_enter_valid_and(java.lang.String,java.lang.String)">
+                <span>When The patient enter valid "username" and "password"</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.commonSD.the_user_click_on_login_button()">
+                <span>And The user click on login button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.commonSD.the_user_redirected_to_sales_force_homepage()">
+                <span>Then The user redirected to SalesForceHomepage</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="11"><span class="badge log pass-bg mr-2">Pass</span>Validate Existing Morbidities available to chosen</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_available_list_box_of_existing_morbidities()">
+                <span>Given Patient is on available list box of existing morbidities</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_an_existing_morbidity_in_the_list_available()">
+                <span>When Patient  selects an existing morbidity in the list available</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.clicks_the_right_arrow()">
+                <span>And clicks the right arrow</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_able_to_see_the_selected_option_in_the_chosen_list_box(java.lang.String)">
+                <span>Then Patient should able to see the selected option "High Cholesterol" in the chosen list box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="20"><span class="badge log pass-bg mr-2">Pass</span>Validate the Undo button on Existing Morbidities</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_chosen_list_box_of_existing_morbidities()">
+                <span>Given Patient is on chosen list box of existing morbidities</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_clicks_on_undo_button()">
+                <span>When Patient  clicks on undo button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_to_see_the_error_msg(java.lang.String)">
+                <span>Then Patient should be able to see the error msg "An option must be selected"</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="27"><span class="badge log pass-bg mr-2">Pass</span>Validate the Other textbox</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_available_list_box_of_existing_morbidities()">
+                <span>Given Patient is on available list box of existing morbidities</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_as_an_existing_morbidity_in_the_list_available(java.lang.String)">
+                <span>When Patient selects "other" as an existing morbidity in the list available</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.clicks_the_right_arrow_of_existing_morbidities_listbox()">
+                <span>And clicks the right arrow of  existing morbidities listbox</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_enter_the_in_the_text_box(java.lang.String)">
+                <span>Then Patient should be able enter the "Sinuscitis" in the text box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="36"><span class="badge log pass-bg mr-2">Pass</span>Validate the Allergy Checkbox</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_available_list_box_of_existing_morbidities()">
+                <span>Given Patient is on available list box of existing morbidities</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_the_allergy_check_box()">
+                <span>When Patient selects the allergy check box</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_enter_the_text_in_the_text_box(java.lang.String)">
+                <span>Then Patient should be able enter the text "peanuts" in the text box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="43"><span class="badge log pass-bg mr-2">Pass</span>Validate the Other textbox in Existing Infections</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_available_list_box_of_existing_morbidities()">
+                <span>Given Patient is on available list box of existing morbidities</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_as_an_existing_infection_in_the_list_available()">
+                <span>When Patient selects an existing infection in the list available</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.clicks_the_right_arrow_of_existing_infections_listbox()">
+                <span>And clicks the right arrow of  existing Infections listbox</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_enter_the_in_the_text_box_of_existing_infections(java.lang.String)">
+                <span>Then Patient should be able enter the "Pneumonia" in the text box of existing infections</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="52"><span class="badge log pass-bg mr-2">Pass</span>Validate selecting Habits options from available to chosen</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_a_habit_in_the_list_available()">
+                <span>Given Patient  selects a habit in the list available</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_clicks_the_right_arrow()">
+                <span>When Patient clicks the right arrow</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_one_more_option()">
+                <span>And Patient selects one more option</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_clicks_the_right_arrow()">
+                <span>And Patient clicks the right arrow</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_able_to_see_the_in_the_chosen_list_box(java.lang.String,java.lang.String)">
+                <span>Then Patient should able to see the "Alcohol","Drugs" in the chosen list box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="63"><span class="badge log pass-bg mr-2">Pass</span>Validate selecting Physical fitness options from available to chosen</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_a_fitness_option_in_the_list_available()">
+                <span>Given Patient  selects a fitness option in the list available</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.clicks_on_the_right_arrow()">
+                <span>When clicks on the right arrow</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.clicks_on_the_left_arrow()">
+                <span>And clicks on the left arrow</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_to_see_the_error_msg(java.lang.String)">
+                <span>Then Patient should be able to see the error msg "An option must be selected"</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="72"><span class="badge log pass-bg mr-2">Pass</span>Validate selecting Family History options more than one from available to chosen</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_more_than_one_option_holding_shift_from_the_list_available()">
+                <span>Given Patient  selects more than one option holding shift from the list available</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.Patient_clicks_on_the_right_arrow_of_Family_History()">
+                <span>When Patient clicks on the right arrow of Family History</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_able_to_see_the_selected_in_the_chosen_list_box(java.lang.String,java.lang.String)">
+                <span>Then Patient should able to see the selected "Diabetes", "Thyroid" in the chosen list box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="79"><span class="badge log pass-bg mr-2">Pass</span>Validate selecting Family History left arrow from chosen to available</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_an_option_holding_from_the_list_chosen()">
+                <span>Given Patient  selects an option holding from the list chosen</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_clicks_on_the_left_arrow_of_family_history()">
+                <span>When Patient clicks on the left arrow of Family History</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_not_be_able_to_see_the_selected_in_the_chosen_list_box(java.lang.String)">
+                <span>Then Patient should not be  able to see the selected "Thyroid" in the chosen list box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="86"><span class="badge log pass-bg mr-2">Pass</span>Validate Fitness Frequency DropDown</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_existing_morbidities_section()">
+                <span>Given Patient is on existing morbidities section</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_clicks_on_fitness_frequency_dropdown()">
+                <span>When Patient  clicks on Fitness Frequency dropdown</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_to_select_an_option_from_the_fitness_frequency_dropdown()">
+                <span>Then Patient should be able to select an option from the Fitness Frequency dropdown</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="93"><span class="badge log pass-bg mr-2">Pass</span>Validate the Surgeries Checkbox</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_existing_morbidities_section()">
+                <span>Given Patient is on existing morbidities section</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_the_surgeries_check_box()">
+                <span>When Patient selects the surgeries check box</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_enter_the_text_in_the_text_box(java.lang.String)">
+                <span>Then Patient should be able enter the text "N/A" in the text box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="100"><span class="badge log pass-bg mr-2">Pass</span>Validate Immunization DropDown</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_existing_morbidities_section()">
+                <span>Given Patient is on existing morbidities section</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_clicks_on_immunization_dropdown()">
+                <span>When Patient  clicks on Immunization dropdown</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_to_select_an_option_from_the_immunization_dropdown()">
+                <span>Then Patient should be able to select an option from the Immunization dropdown</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="107"><span class="badge log pass-bg mr-2">Pass</span>Validate the International Travel Checkbox</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_is_on_existing_morbidities_section()">
+                <span>Given Patient is on existing morbidities section</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_selects_the_international_travel_check_box()">
+                <span>When Patient selects the  International Travel check box</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.ExistingMorbiditiesSD.patient_should_be_able_enter_the_in_the_enter_country_name_text_box(java.lang.String)">
+                <span>Then Patient should be able enter the "India" in the Enter Country Name text box</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div class="test-content scrollable">
+<div class="test-content-tools">
+<ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+</div>
+<div class="test-content-detail"><div class="detail-body"></div></div>
+</div></div>
+<div class="test-wrapper row view category-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">15</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_06ValidateTheotherTextboxinExistingInfections</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_06ValidateTheotherTextboxinExistingInfections</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:32 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='43'>Validate the Other textbox in Existing Infections</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Other textbox in Existing Infections</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_05ValidateTheAllergyCheckbox</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_05ValidateTheAllergyCheckbox</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:32 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='36'>Validate the Allergy Checkbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Allergy Checkbox</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_12ValidateTheSurgeriesCheckbox</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_12ValidateTheSurgeriesCheckbox</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:36 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='93'>Validate the Surgeries Checkbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Surgeries Checkbox</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_10ValidateFamilyHistory-leftarrowbtn</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_10ValidateFamilyHistory-leftarrowbtn</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:35 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='79'>Validate selecting Family History left arrow from chosen to available</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Family History left arrow from chosen to available</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_03ValidateUndoExistingMorbidities</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_03ValidateUndoExistingMorbidities</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:31 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='20'>Validate the Undo button on Existing Morbidities</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Undo button on Existing Morbidities</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_02ValidateExistingMorbidities-availabletochosen</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_02ValidateExistingMorbidities-availabletochosen</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:28 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='11'>Validate Existing Morbidities available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate Existing Morbidities available to chosen</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_08ValidatePhysicalFitnessoption-availabletochosen</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_08ValidatePhysicalFitnessoption-availabletochosen</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='63'>Validate selecting Physical fitness options from available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Physical fitness options from available to chosen</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_09ValidateFamilyHistory-moreoptionsavailabletochosen</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_09ValidateFamilyHistory-moreoptionsavailabletochosen</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='72'>Validate selecting Family History options more than one from available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Family History options more than one from available to chosen</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_04ValidateTheotherTextbox</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_04ValidateTheotherTextbox</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:31 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='27'>Validate the Other textbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Other textbox</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_13ValidateImmunizationDropDown</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_13ValidateImmunizationDropDown</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:37 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='100'>Validate Immunization DropDown</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate Immunization DropDown</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_11ValidateFitnessFrequencyDropDown</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_11ValidateFitnessFrequencyDropDown</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:36 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='86'>Validate Fitness Frequency DropDown</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate Fitness Frequency DropDown</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_01LoginPage</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_01LoginPage</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:15 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='2'>Validate loginPage</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate loginPage</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_07ValidateHabitsOption-availabletochosen</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_07ValidateHabitsOption-availabletochosen</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:33 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='52'>Validate selecting Habits options from available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Habits options from available to chosen</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@TS_14ValidateInternationalTravelCheckbox</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@TS_14ValidateInternationalTravelCheckbox</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:37 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='107'>Validate the International Travel Checkbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the International Travel Checkbox</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>14</span>
+</span>
+<p class="name">@ExistingMorbidities</p>
+<p class="duration text-sm">14 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ExistingMorbidities</h4>
+<span status="pass" class='badge log pass-bg'>14 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:15 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='2'>Validate loginPage</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate loginPage</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:28 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='11'>Validate Existing Morbidities available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate Existing Morbidities available to chosen</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:31 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='20'>Validate the Undo button on Existing Morbidities</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Undo button on Existing Morbidities</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:31 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='27'>Validate the Other textbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Other textbox</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:32 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='36'>Validate the Allergy Checkbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Allergy Checkbox</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:32 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='43'>Validate the Other textbox in Existing Infections</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Other textbox in Existing Infections</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:33 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='52'>Validate selecting Habits options from available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Habits options from available to chosen</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='63'>Validate selecting Physical fitness options from available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Physical fitness options from available to chosen</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='72'>Validate selecting Family History options more than one from available to chosen</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Family History options more than one from available to chosen</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:35 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='79'>Validate selecting Family History left arrow from chosen to available</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate selecting Family History left arrow from chosen to available</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:36 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='86'>Validate Fitness Frequency DropDown</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate Fitness Frequency DropDown</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:36 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='93'>Validate the Surgeries Checkbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the Surgeries Checkbox</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:37 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='100'>Validate Immunization DropDown</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate Immunization DropDown</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>23:29:37 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='107'>Validate the International Travel Checkbox</a>
+<div class="">
+<span class="badge badge-default">Validitate Existing Morbidities.Validate the International Travel Checkbox</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div>        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/js/spark-script.js"></script>
+<script type="text/javascript"></script></body>
+</html>
