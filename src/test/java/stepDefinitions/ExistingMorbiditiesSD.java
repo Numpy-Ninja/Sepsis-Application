@@ -203,14 +203,16 @@ public class ExistingMorbiditiesSD {
 		existingMorbidities.FitnessDropdownOption();
 	}
 
-	@When("Patient selects the surgeries check box")
-	public void patient_selects_the_surgeries_check_box() {
+	@When("Patient selects the surgeries check box and enter the text {string} in the text box")
+	public void patient_selects_the_surgeries_check_box_and_enter_the_text_in_the_text_box(String surgery) {
 		existingMorbidities.clickSurgeryCkbx();
-	}
-
-	@Then("Patient should be able to enter the text {string} in the textbox")
-	public void patient_should_be_able_to_enter_the_text_in_the_textbox(String surgery) {
 		existingMorbidities.SendTxtSurgeryTxtbx(surgery);
+	}
+	
+	@Then("Patient should be able to see the text {string} in the surgeries in the text box")
+	public void patient_should_be_able_to_see_the_text_in_the_surgeries_in_the_text_box(String surgeryText) {
+	    String surgery=existingMorbidities.checkSurgeryText();
+	    assertEquals(surgery, surgeryText);
 	}
 
 	@When("Patient  clicks on Immunization dropdown")

@@ -71,8 +71,8 @@ Feature: Validitate Existing Morbidities
   @TS_11ValidateTheSurgeriesCheckbox
   Scenario: Validate the Surgeries Checkbox
     Given Patient is on existing morbidities section
-    When Patient selects the surgeries check box
-    Then Patient should be able enter the text "N/A" in the text box
+    When Patient selects the surgeries check box and enter the text "Yes" in the text box
+    Then Patient should be able to see the text "Yes" in the surgeries in the text box
 
   @TS_12ValidateImmunizationDropDown
   Scenario: Validate Immunization DropDown

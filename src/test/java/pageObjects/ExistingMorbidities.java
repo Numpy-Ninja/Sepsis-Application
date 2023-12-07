@@ -393,6 +393,10 @@ public String fitnessOptgetText() {
 
 		ac.actionClass(surgeryTxtbx, surgery);
 	}
+	
+	public String checkSurgeryText() {
+		return surgeryTxtbx.getText();
+	}
 
 	// International travel
 
