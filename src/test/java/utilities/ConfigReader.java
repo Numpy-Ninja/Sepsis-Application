@@ -71,4 +71,9 @@ public static String getPassword()
 	String password=prop.getProperty("password");
 	return password;
 }
+public static String getFilePath()
+{
+	String filePath=prop.getProperty("filePath");
+	return filePath;
+}
 }

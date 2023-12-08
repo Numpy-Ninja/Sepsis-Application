@@ -26,8 +26,11 @@ local.properties
 # Locally stored "Eclipse launch configurations"
 *.launch
 
+
 test-output
 allure-results
 Reports
+
+
 src/test/java/.DS_Store
 .DS_Store
