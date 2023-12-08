@@ -26,8 +26,10 @@ public class PatientObjectMandatorySD {
 	String password = ConfigReader.getPassword();
 	PatientDataReader dataReader = new PatientDataReader();
 
-	@Given("Patient is on New patient form for entering details")
-	public void patient_is_on_new_patient_form_for_entering_details() {
+	@Given("Patient is on New patient form for entering patient details")
+	public void patient_is_on_new_patient_form_for_entering_patient_details() {
+		patient.patientObject_select();
+		patient.newPatientform();
 		logger.info("Patient is on new patient form");
 	}
 
@@ -139,12 +141,18 @@ public class PatientObjectMandatorySD {
 		patient.selectPhysicalFitness();
 		patient.selectFamilyHistory();
 		patient.saveButton();
-		logger.info("Patient submits patient form with missing data");}
+		logger.info("Patient submits patient form with missing data");
+		patient.selectListView();
+	    patient.selectExistPatientView();
+		patient.SortDesc();
+	}
 
-	@Then("Patient form is successfully created with the success message {string}")
-	public void patient_form_is_successfully_created_with_the_success_message(String successMsg) {
-	    //boolean successMsgText=patient.successMsgText().contains(successMsg);
-	    //assertEquals(successMsgText, "True");
+	@Then("Patient form is successfully created with the success message")
+	public void patient_form_is_successfully_created_with_the_success_message() {
+		patient.getLastElementText();
+		String actualAlertMsg = patient.getalertMsg();
+		String expectedAlertMsg = patient.getExpectedMsg();
+		assertEquals(actualAlertMsg, expectedAlertMsg);
 	}
 
 

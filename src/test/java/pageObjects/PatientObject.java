@@ -26,16 +26,6 @@ public class PatientObject {
 
 	// Locators
 
-	@FindBy(id = "username")
-	static WebElement user;
-	@FindBy(id = "password")
-	static WebElement pwd;
-	@FindBy(id = "Login")
-	WebElement login_button;
-	@FindBy(xpath = "//div[@class='slds-icon-waffle']")
-	WebElement waffle_btn;
-	@FindBy(xpath = "//p[contains(.,'Sepsis')]")
-	WebElement sepsisApp;
 	@FindBy(xpath = "//a[@title='Patients']")
 	WebElement patient_object;
 	@FindBy(xpath = "//div[contains(text(),'New')]")
@@ -122,31 +112,6 @@ public class PatientObject {
 	public PatientObject() {
 
 		PageFactory.initElements(driver, this);
-	}
-
-	public void SalesForcelogin_page() {
-
-		driver.get(SFurl);
-
-	}
-
-	public void Name_Status(String status) {
-		if (status == "fail") {
-			System.out.println("Please enter alphabets");
-		} else {
-			System.out.println("success");
-		}
-	}
-
-	public void newPatientForm(String username, String password) {
-		user.clear();
-		user.sendKeys(username);
-		pwd.clear();
-		pwd.sendKeys(password);
-		login_button.click();
-		waffle_btn.click();
-		sepsisApp.click();
-
 	}
 
 	/// Personal Info ///

@@ -23,16 +23,6 @@ public class UploadFileBloodReport {
 
 	// Locators
 
-	@FindBy(id = "username")
-	private static WebElement user;
-	@FindBy(id = "password")
-	private static WebElement pwd;
-	@FindBy(id = "Login")
-	private static WebElement login_button;
-	@FindBy(xpath = "//div[@class='slds-icon-waffle']")
-	private static WebElement waffle_btn;
-	@FindBy(xpath = "//p[contains(.,'Sepsis')]")
-	private static WebElement sepsisApp;
 	@FindBy(xpath = "//a[@title='Patients']")
 	private static WebElement patient_object;
 	@FindBy(xpath = "//a[@id='relatedListsTab__item']")
@@ -61,41 +51,6 @@ public class UploadFileBloodReport {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void SalesForcelogin_page() {
-
-		driver.get(SFurl);
-
-	}
-
-	public void Login(String username, String password) {
-
-		ac.waitForElementToappear(user);
-
-		user.clear();
-
-		user.sendKeys(username);
-		ac.waitForElementToappear(pwd);
-		pwd.clear();
-		pwd.sendKeys(password);
-
-	}
-
-	public void login_button() {
-
-		login_button.click();
-
-	}
-
-	public void waffle_click() {
-
-		ac.waitForElementToappear(waffle_btn);
-		waffle_btn.click();
-	}
-
-	public void sepsisApp_click() {
-		// waitForElementToappear(sepsisApp);
-		sepsisApp.click();
-	}
 
 	public void patientObject_select() {
 		
@@ -146,4 +101,5 @@ public class UploadFileBloodReport {
 		return uploadAlert.getText();
 		
 	}
+	
 }

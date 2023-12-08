@@ -44,6 +44,11 @@ public class PatientObjectMandatory {
 	/// Patient Contact Info //
 	@FindBy(xpath = "//input[@name='Phone__c']")
 	WebElement phone_textbox;
+	
+	//Emergency Contact Info//
+	@FindBy(xpath = "//input[@name='Emergency_Contact_Number__c']")
+	WebElement emergency_contactnumber;
+	
 
 	// Existing Morbidity//
 	@FindBy(xpath = "//div[@role='group']/div[contains(text(),'Existing Morbi')]/../div[2]//span[(text()='Chosen')]/../div//span/span")
@@ -164,8 +169,19 @@ public class PatientObjectMandatory {
 	//Success Msg//
 	@FindBy(xpath = "//span[contains(@data-aura-class,'forceActionsText')]")
 	private static WebElement successMsgPatientCreation;
+	@FindBy(xpath = "//span[@class='toastMessage slds-text-heading--small forceActionsText']")
+	private static WebElement alertMsgSave;
+	@FindBy(xpath = "//button[@title='Select a List View: Patients']")
+	private static WebElement listView;
+	@FindBy(xpath = "//span[normalize-space()='Existing Patients List View']")
+	private static WebElement existingPatientList;
+	@FindBy(xpath = "//thead/tr/th[3]/div/span")
+	private static WebElement sortToggle;
+	@FindBy(xpath = "//tbody/tr[1]/th[1]/span[1]/a[1]")
+	private static WebElement lastElement;
+	@FindBy(xpath = "//lightning-formatted-text[@slot='primaryField']")
+	private static WebElement LastpatientId;
 
-	//span[contains(@data-aura-class,'forceActionsText')]
 	// Constructor
 	public PatientObjectMandatory() {
 
@@ -173,6 +189,10 @@ public class PatientObjectMandatory {
 	}
 
 	// New Patient form//
+	public void patientObject_select() {
+		executor.executeScript("arguments[0].click();", patient_object);
+
+	}
 	public void newPatientform() {
 		executor.executeScript("arguments[0].scrollIntoView()", new_btn);
 		new_btn.click();
@@ -212,6 +232,40 @@ public class PatientObjectMandatory {
 	public void saveButton() {
 		SaveBtn.click();
 	}
+
+	public String getalertMsg() {
+		System.out.println(alertMsgSave.getText());
+		return alertMsgSave.getText();
+	}
+
+	public void selectListView() {
+		ac.waitForElementToappear(listView);
+		executor.executeScript("arguments[0].click();", listView);
+
+	}
+
+	public void selectExistPatientView() {
+		executor.executeScript("arguments[0].click();", existingPatientList);
+	}
+
+	public void SortDesc() {
+		executor.executeScript("arguments[0].click();", sortToggle);
+	}
+
+	public String getLastElementText() {
+		ac.waitForElementToappear(LastpatientId);
+		return LastpatientId.getText();
+	}
+
+	public String getExpectedMsg() {
+		String lastRecord = getLastElementText().substring(3, 7);
+		char quotes = '"';
+		String expectedAlertMsg = "Patient \"PT-" + lastRecord + quotes + " was created.";
+		System.out.println(expectedAlertMsg);
+		return expectedAlertMsg;
+
+	}
+
 
 	public void cancelButton() {
 		executor.executeScript("arguments[0].scrollIntoView()", CancelBtn);
@@ -291,6 +345,8 @@ public class PatientObjectMandatory {
 		dateOfBirth.click();
 		dateOfBirth.sendKeys(patientData.getDob());
 		phone_textbox.sendKeys(patientData.getPhoneNumber());
+		executor.executeScript("arguments[0].scrollIntoView()", emergency_contactnumber);
+        emergency_contactnumber.sendKeys(patientData.getEmergencyContactNumber());
 		otherExisMTextBox.sendKeys(patientData.getOtherExistingMorbidities());
 		executor.executeScript("arguments[0].scrollIntoView()", Fitness);
 		Fitness.click();

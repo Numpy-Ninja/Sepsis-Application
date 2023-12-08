@@ -13,6 +13,7 @@ public class PatientData {
 	private String gender;
 	private String dob;
 	private String phoneNumber;
+	private String emergencyContactNumber;
 	private String otherExistingMorbidities;
 	private String fitnessFrequency;
 	private String immunization;

@@ -3,14 +3,14 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
 
   @TS_01ValidatingtheNewPatientformWithMissingData
     Scenario Outline: Validate the patient information form submission with missing data
-    Given Patient is on New patient form
+    Given Patient is on New patient form for entering patient details
     When Patient submits new patient form with missing data from "<SheetName>" and <Rownumber>
     And Error message "We hit a snag." is displayed and review the following field
     Then Error message "Complete this field." is displayed
     
     Examples: 
       | SheetName        | Rownumber |
-      |   PatientDetails    |     2     |
+      |   PatientDetails    |     0     |
      
   @TS_02ValidatingtheNewPatientformWithInvalidData
     Scenario Outline: Validate the patient information form submission with invalid data
@@ -21,7 +21,7 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     3     |
+      | PatientDetails      |     1     |
       
   @TS_02ValidatingtheNewPatientformWithInvalidData
     Scenario Outline: Validate the patient information form submission with invalid data
@@ -32,7 +32,7 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     4     |
+      | PatientDetails      |     2     |
   
   @TS_02ValidatingtheNewPatientformWithInvalidData
     Scenario Outline: Validate the patient information form submission with invalid data
@@ -43,14 +43,14 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     5    |
+      | PatientDetails      |     3    |
       
   @TS_03ValidatingtheNewPatientformWithValidData  
   Scenario Outline: Validate attendance form submission with valid data
     Given Patient is on same patient form
     When Patient submits new patient form with valid data from "<SheetName>" and <Rownumber>
-    Then Patient form is successfully created with the success message "Patient \"PT-<int>\" was created."
+    Then Patient form is successfully created with the success message
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     6     |  
+      | PatientDetails      |     4   |  

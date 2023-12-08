@@ -10,18 +10,18 @@ import pageObjects.data.PatientData;
 
 public class PatientDataReader {
 
-	public static final String EXCEL = "target/test-classes/dataFiles/SepsisPatientData.xlsx";
-	
-	public PatientData getData(String SheetName, int Rownumber)
-			throws InvalidFormatException, IOException {
+	public static final String EXCEL = "target/test-classes/dataFiles/SepsisPatientData1.xlsx";
+
+	public PatientData getData(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
 		System.out.println(new File(".").getAbsolutePath());
 		ExcelReader excelReader = new ExcelReader();
-		Map<String,String> data =  excelReader.getData(EXCEL, SheetName).get(Rownumber);
+		Map<String, String> data = excelReader.getData(EXCEL, SheetName).get(Rownumber);
 		String FirstName = data.get("FirstName");
 		String LastName = data.get("LastName");
 		String Gender = data.get("Gender");
 		String DOB = data.get("DOB");
 		String PhoneNumber = data.get("PhoneNumber");
+		String EmergencycontactNumber = data.get("EmergencyContactNumber");
 		String OtherExistingMorbidities = data.get("OtherExistingMorbidities");
 		String FitnessFrequency = data.get("FitnessFrequency");
 		String Immunization = data.get("Immunization");
@@ -32,9 +32,11 @@ public class PatientDataReader {
 		String Glucose = data.get("Glucose");
 		String GlucoseValue = data.get("GlucoseValue");
 		String WhiteBloodCells = data.get("WhiteBloodCells");
-		PatientData patientData= PatientData.builder().firstName(FirstName).lastName(LastName).gender(Gender).dob(DOB).phoneNumber(PhoneNumber)
-				.otherExistingMorbidities(OtherExistingMorbidities).fitnessFrequency(FitnessFrequency).immunization(Immunization).currentMedication(CurrentMedication)
-				.temperature(Temperature).heartRate(HeartRate).bp(BP).glucose(Glucose).glucoseValue(GlucoseValue)
+		PatientData patientData = PatientData.builder().firstName(FirstName).lastName(LastName).gender(Gender).dob(DOB)
+				.phoneNumber(PhoneNumber).emergencyContactNumber(EmergencycontactNumber)
+				.otherExistingMorbidities(OtherExistingMorbidities).fitnessFrequency(FitnessFrequency)
+				.immunization(Immunization).currentMedication(CurrentMedication).temperature(Temperature)
+				.heartRate(HeartRate).bp(BP).glucose(Glucose).glucoseValue(GlucoseValue)
 				.whiteBloodCells(WhiteBloodCells).build();
 		return patientData;
 	}
