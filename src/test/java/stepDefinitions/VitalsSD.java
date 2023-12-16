@@ -108,16 +108,18 @@ public class VitalsSD {
 	@When("Patient clicks on save button")
 	public void patient_clicks_on_save_button() {
 		vt.saveBtnclick();
-		vt.selectListView();
-		vt.selectExistPatientView();
-		vt.SortDesc();
+		
 		
 	}
 
 	@Then("the form should be  saved succesfully by displaying a message")
 	public void the_form_should_be_saved_succesfully_by_displaying_a_message() {
         
-		vt.getLastElementText();
+//		vt.ClickPatientobj();
+//		vt.selectListView();
+//		vt.selectExistPatientView();
+//		vt.SortDesc();
+//		vt.clickOnPatientId();
 		String actualAlertMsg = vt.getalertMsg();
 		String expectedAlertMsg = vt.getExpectedMsg();
 		assertEquals(actualAlertMsg, expectedAlertMsg);

@@ -19,35 +19,16 @@ public class Vitals{
 	JavascriptExecutor executor = (JavascriptExecutor) driver;
 	
 	
-	//Locators - Login
-	@FindBy(id = "username")
-	private static WebElement user;
-	@FindBy(id = "password")
-	private static WebElement pwd;
-	@FindBy(id = "Login")
-	private static WebElement login_button;
-	@FindBy(xpath = "//div[@class='slds-icon-waffle']")
-	private static WebElement waffle_btn;
-	@FindBy(xpath = "//p[contains(.,'Sepsis')]")
-	private static WebElement sepsisApp;
-	@FindBy(xpath = "//a[@title='Patients']")
-	private static WebElement patient_object;
-	@FindBy(xpath = "//div[contains(text(),'New')]")
-	private static WebElement new_btn;
-	@FindBy(xpath = "//span[contains(.,'Next')]")
-	private static WebElement next_btn;
-	@FindBy(xpath = "//input[@name='First_Name__c']")
-	private static WebElement first_name;
-	@FindBy(xpath = "//input[@name='Last_Name__c']")
-	private static WebElement last_name;
+
 
 	
 	//Locators Medication
+	
 	@FindBy (xpath= "//input[@name='Current_Medication__c']")
 	private static WebElement CurrentMedication;
 	
 	//Locators - Vitals
-	//@FindBy(className= "slds-truncate") WebElement Vitals;
+
 	@FindBy(xpath = "//input[@name='Temperature__c']") 
 	private static WebElement Temperature;
 	@FindBy(xpath = "//input[@name='Heart_Rate__c']") 
@@ -79,9 +60,12 @@ public class Vitals{
 	private static WebElement sortToggle;
 	@FindBy(xpath="//tbody/tr[1]/th[1]/span[1]/a[1]")
 	private static WebElement lastElement;
-	@FindBy(xpath="//lightning-formatted-text[@slot='primaryField']")
+	//@FindBy(xpath="(//lightning-formatted-text[@slot='primaryField'])[3]")
+	@FindBy(xpath="//div[1]/div/div[1]/div[2]/h1/slot/lightning-formatted-text")
 	private static WebElement LastpatientId;
-
+	@FindBy(xpath = "//a[@title='Patients']")
+	private static WebElement patient_object;
+	
 	//Constructor
 	
 			public Vitals() {
@@ -95,52 +79,7 @@ public class Vitals{
 
 			}
 			
-	//Login Methods
-			
-			public void Login(String username, String password) {
-				ac.waitForElementToappear(user);
-				user.clear();
-				user.sendKeys(username);
-				ac.waitForElementToappear(pwd);
-				pwd.clear();
-				pwd.sendKeys(password);
-			}
-			
-			public void login_button() {
-				login_button.click();
-			}
-			
-			public void waffle_click() {
-				ac.waitForElementToappear(waffle_btn);
-				waffle_btn.click();
-			}
-			
-			public void sepsisApp_click() {
-				// waitForElementToappear(sepsisApp);
-				sepsisApp.click();
-			}
-			
-			public void patientObject_select() {
-				JavascriptExecutor executor = (JavascriptExecutor) driver;
-				executor.executeScript("arguments[0].click();", patient_object);
-			}
-			
-			public void selectNew() {
-				ac.waitForElementToappear(new_btn);
-				new_btn.click();
-			}
-			
-			public void enterFirstName(String First_Name) {
-				ac.waitForElementToappear(first_name);
-				first_name.clear();
-				first_name.sendKeys(First_Name);
-			}
-			public void enterLastName(String Last_Name) {
-				ac.waitForElementToappear(last_name);
-				last_name.clear();
-				last_name.sendKeys(Last_Name);
-			}
-			
+	
 			
 			
 			//Medication Methods
@@ -231,12 +170,16 @@ public class Vitals{
 								ac.actionClassMoveTo(SaveBtn);
 			}
 			
-			public void validatePatientId(String patientId)
+			public void ClickPatientobj()
 			{
-				ac.actionClass(patientID,patientId );
+				ac.waitForElementToappear(patient_object);
+				//executor.executeScript("arguments[0].click();", patient_object);
+				ac.actionClassMoveTo(patient_object);
+
 			}
 			public String getalertMsg()
 			{
+				ac.waitForElementToappear(alertMsgSave);
 				System.out.println(alertMsgSave.getText());
 				return alertMsgSave.getText();
 			}
@@ -256,13 +199,20 @@ public class Vitals{
 			{
 				JavascriptExecutor executor = (JavascriptExecutor) driver;
 				executor.executeScript("arguments[0].click();",sortToggle );
+				
 			}
 			
+			public void clickOnPatientId()
+			{
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0].click();",lastElement );
+				
+			}
 			
 			public String getLastElementText()
 			{
 				
-				//System.out.println( lastElement.getText());
+				
 				ac.waitForElementToappear(LastpatientId);
 				return LastpatientId.getText();
 			}
@@ -278,4 +228,6 @@ public class Vitals{
 				return expectedAlertMsg;
 				
 			}
+			
+			
 }

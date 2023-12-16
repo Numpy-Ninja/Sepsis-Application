@@ -1,5 +1,8 @@
 package pageObjects;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,51 +12,56 @@ import org.openqa.selenium.support.PageFactory;
 
 import driverFactory.AbstractComponents;
 import driverFactory.BaseClass;
+import io.cucumber.datatable.DataTable;
 import utilities.ConfigReader;
 
 public class UploadFileBloodReport {
 
 	public static WebDriver driver = BaseClass.getdriver();
 	AbstractComponents ac = new AbstractComponents(driver);
+	ExistingMorbidities existingMorbidities = new ExistingMorbidities();
 	String SFurl = ConfigReader.getApplicationUrl();
 	String username = ConfigReader.getUsername();
 	String password = ConfigReader.getPassword();
-	String filePath=ConfigReader.getFilePath();
+	String filePath = ConfigReader.getFilePath();
 	JavascriptExecutor executor = (JavascriptExecutor) driver;
+	float temperature;
+	int HeartRate;
+	int RespiratoryRate;
+	int WBC;
 
 	// Locators
 
-	@FindBy(id = "username")
-	private static WebElement user;
-	@FindBy(id = "password")
-	private static WebElement pwd;
-	@FindBy(id = "Login")
-	private static WebElement login_button;
-	@FindBy(xpath = "//div[@class='slds-icon-waffle']")
-	private static WebElement waffle_btn;
-	@FindBy(xpath = "//p[contains(.,'Sepsis')]")
-	private static WebElement sepsisApp;
 	@FindBy(xpath = "//a[@title='Patients']")
 	private static WebElement patient_object;
 	@FindBy(xpath = "//a[@id='relatedListsTab__item']")
 	private static WebElement RelatedTab;
 	@FindBy(xpath = "(//input[@type='file'])[1]")
 	private static WebElement upload_btn;
-    @FindBy(xpath ="//button[@class='slds-button slds-button--neutral ok desktop uiButton--default uiButton--brand uiButton']")
+	
+	@FindBy(xpath = "(//*[name()='svg'][@data-key='close'])[1]")
 	private static WebElement doneBtn;
-	@FindBy(xpath="//span[@class='toastMessage slds-text-heading--small forceActionsText']")
+	@FindBy(xpath = "//span[@class='toastMessage slds-text-heading--small forceActionsText']")
 	private static WebElement uploadAlert;
-	@FindBy(xpath="//button[@title='Select a List View: Patients']")
+	@FindBy(xpath = "//button[@title='Select a List View: Patients']")
 	private static WebElement listView;
-	@FindBy(xpath="//span[normalize-space()='Existing Patients List View']")
+	@FindBy(xpath = "//span[normalize-space()='Existing Patients List View']")
 	private static WebElement existingPatientList;
-	@FindBy(xpath="//thead/tr/th[3]/div/span")
+	@FindBy(xpath = "//thead/tr/th[3]/div/span")
 	private static WebElement sortToggle;
-	@FindBy(xpath="//tbody/tr[1]/th[1]/span[1]/a[1]")
+	@FindBy(xpath = "//tbody/tr[1]/th[1]/span[1]/a[1]")
 	private static WebElement lastElement;
-	
-	
-	
+	@FindBy(xpath = "//div[@data-target-selection-name='sfdc:RecordField.Patient__c.Risk_of_Sepsis__c']")
+	private static WebElement sepsisRisk;
+	@FindBy(xpath = "//span[normalize-space()='Temperature']")
+	private static WebElement Temperature;
+	@FindBy(xpath = "//span[normalize-space()='Respiratory Rate']")
+	private static WebElement respiratoryRate;
+	@FindBy(xpath = "//span[normalize-space()='Heart Rate']")
+	private static WebElement heartRate;
+	@FindBy(xpath = "//span[normalize-space()='White Blood Cells (Leukocyte)']")
+	private static WebElement wbc;
+
 	// Constructor
 
 	public UploadFileBloodReport() {
@@ -67,83 +75,97 @@ public class UploadFileBloodReport {
 
 	}
 
-	public void Login(String username, String password) {
-
-		ac.waitForElementToappear(user);
-
-		user.clear();
-
-		user.sendKeys(username);
-		ac.waitForElementToappear(pwd);
-		pwd.clear();
-		pwd.sendKeys(password);
-
-	}
-
-	public void login_button() {
-
-		login_button.click();
-
-	}
-
-	public void waffle_click() {
-
-		ac.waitForElementToappear(waffle_btn);
-		waffle_btn.click();
-	}
-
-	public void sepsisApp_click() {
-		// waitForElementToappear(sepsisApp);
-		sepsisApp.click();
-	}
-
 	public void patientObject_select() {
-		
+
 		executor.executeScript("arguments[0].click();", patient_object);
 
 	}
-//
-//	public void selectListView() {
-//		JavascriptExecutor executor = (JavascriptExecutor) driver;
-//		executor.executeScript("arguments[0].click();",listView );
-//	}
-//
-//	public void selectExistPatientView() {
-//		JavascriptExecutor executor = (JavascriptExecutor) driver;
-//		executor.executeScript("arguments[0].click();",existingPatientList );
-//	}
-//	
-//	public void SortDesc()
-//	{
-//		JavascriptExecutor executor = (JavascriptExecutor) driver;
-//		executor.executeScript("arguments[0].click();",sortToggle );
-//	}
+
 	public void selectPatientId() {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", lastElement);
 	}
-	
-	
+
+	public void getTextParameters() {
+		temperature = Integer.parseInt(Temperature.getText());
+		WBC = Integer.parseInt(wbc.getText());
+		HeartRate = Integer.parseInt(heartRate.getText());
+		RespiratoryRate = Integer.parseInt(respiratoryRate.getText());
+	}
+
 	public void ClickRelatedTab() {
+		driver.navigate().refresh();
 		ac.waitForElementToappear(RelatedTab);
 		ac.actionClassMoveTo(RelatedTab);
 	}
 
-	public void enterFilePath() {
+	public void enterFilePath() throws InterruptedException {
 		upload_btn.sendKeys(filePath);
-		ac.waitForElementToappear(doneBtn);
+		Thread.sleep(3000);
+		//ac.waitForElementToappear(doneBtn);
+		//ac.actionClassMoveTo(doneBtn);
+		 doneBtn.click();
+
 		
-		driver.findElement(By.xpath("(//span[@class=' label bBody'])[3] ")).click();
+		
+	}
+	public String uploadAlertText() throws InterruptedException {
+
+		ac.waitForElementToappear(uploadAlert);
+
+		return uploadAlert.getText();
+
 	}
 
-
-	
-	public String uploadAlertText() throws InterruptedException
-	{
+	public String getSepsisRisk() {
 		
-		ac.waitForElementToappear(uploadAlert);
+
+		executor.executeScript("window.scrollTo(0,500)");
+		String risk = sepsisRisk.getText().substring(15);	
+		System.out.println(sepsisRisk.getText());
+		return risk;
+
+	}
 	
-		return uploadAlert.getText();
+	
+
+	public String getRiskOfSepsis(String sepsisStatus) {
+		String SepsisRisk = "";
+		//Boolean surgeryCheckbx= existingMorbidities.SurgeryCkbxChecked();
+		switch (sepsisStatus) {
+		case "Normal":
+		if ( WBC < 11000 && RespiratoryRate >= 12 || RespiratoryRate <= 18 && HeartRate < 90
+			 && temperature <=100.4)
+			SepsisRisk="Normal";
+		break;
+		case "LOW":
+			if (WBC >= 4000 && WBC <= 12000 && RespiratoryRate >= 12&& RespiratoryRate <= 20 && HeartRate > 90
+					|| HeartRate < 60 && temperature > 100.4 || temperature < 96.8)
+				SepsisRisk = "LOW";
+			break;
+		case "Medium":
+			if (WBC >= 4000 && WBC <= 12000  && RespiratoryRate > 20
+					|| RespiratoryRate < 12  && HeartRate > 90
+					|| HeartRate < 60 && temperature > 100.4 || temperature < 96.8)
+				SepsisRisk = "Medium";
+			break;
+         case "High":
+        	 
+     			if (WBC >= 12000 || WBC <= 4000  && RespiratoryRate > 20
+     					|| RespiratoryRate < 12  && HeartRate > 90
+     					|| HeartRate < 60 && temperature > 100.4 || temperature < 96.8)
+     				SepsisRisk = "High";
+     			break;
+	         case "Critical":
+	        		if (WBC >= 12000 || WBC <= 4000  && RespiratoryRate > 20
+ 					|| RespiratoryRate < 12  && HeartRate > 90
+ 					|| HeartRate < 60 && temperature > 100.4 || temperature < 96.8 )
+ 				SepsisRisk = "Critical";
+	             break;
+
+		}
+		return SepsisRisk;
+		
 		
 	}
 }
