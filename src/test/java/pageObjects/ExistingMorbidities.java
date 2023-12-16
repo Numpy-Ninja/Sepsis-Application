@@ -22,27 +22,6 @@ public class ExistingMorbidities {
 
 	// Locators
 
-	@FindBy(id = "username")
-	private static WebElement user;
-	@FindBy(id = "password")
-	private static WebElement pwd;
-	@FindBy(id = "Login")
-	private static WebElement login_button;
-	@FindBy(xpath = "//div[@class='slds-icon-waffle']")
-	private static WebElement waffle_btn;
-	@FindBy(xpath = "//p[contains(.,'Sepsis')]")
-	private static WebElement sepsisApp;
-	@FindBy(xpath = "//a[@title='Patients']")
-	private static WebElement patient_object;
-	@FindBy(xpath = "//div[contains(text(),'New')]")
-	private static WebElement new_btn;
-	@FindBy(xpath = "//span[contains(.,'Next')]")
-	private static WebElement next_btn;
-	@FindBy(xpath = "//input[@name='First_Name__c']")
-	private static WebElement first_name;
-	@FindBy(xpath = "//input[@name='Last_Name__c']")
-	private static WebElement last_name;
-
 	// Existing Morbidity
 
 	@FindBy(xpath = "(//span[@title='High Cholesterol'])[1]")
@@ -60,8 +39,6 @@ public class ExistingMorbidities {
 	private static WebElement otherTextBox;
 	@FindBy(xpath = "//h3/span[@title='Existing Morbidities']")
 	private static WebElement EmTitle;
-	
-	
 
 	// Existing Infections
 
@@ -92,7 +69,7 @@ public class ExistingMorbidities {
 
 	@FindBy(xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[14]")
 	private static WebElement FitnessDropdown;
-	@FindBy(xpath = "//div/lightning-base-combobox-item[2]//span[2]/span[@title='3 to 5 days a week']" )
+	@FindBy(xpath = "//div/lightning-base-combobox-item[2]//span[2]/span[@title='3 to 5 days a week']")
 	private static WebElement option;
 
 	// Surgeries
@@ -112,7 +89,7 @@ public class ExistingMorbidities {
 
 	@FindBy(xpath = "(//div[@class='slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click'])[13]")
 	private static WebElement ImmunizationDropdown;
-	@FindBy(xpath ="//div/lightning-base-combobox-item[2]//span[2]/span[@title='Up to date']")
+	@FindBy(xpath = "//div/lightning-base-combobox-item[2]//span[2]/span[@title='Up to date']")
 	private static WebElement ImmunizationOption;
 
 	// Physical Fitness
@@ -149,72 +126,6 @@ public class ExistingMorbidities {
 
 	}
 
-	public void Login(String username, String password) {
-
-		ac.waitForElementToappear(user);
-
-		user.clear();
-
-		user.sendKeys(username);
-		ac.waitForElementToappear(pwd);
-		pwd.clear();
-		pwd.sendKeys(password);
-
-	}
-
-	public void login_button() {
-
-		login_button.click();
-
-	}
-
-	public void waffle_click() {
-
-		ac.waitForElementToappear(waffle_btn);
-		waffle_btn.click();
-	}
-
-	public void sepsisApp_click() {
-		ac.waitForElementToappear(sepsisApp);
-		sepsisApp.click();
-	}
-
-	public void patientObject_select() {
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", patient_object);
-
-	}
-
-	public void selectNew() {
-		ac.waitForElementToappear(new_btn);
-		new_btn.click();
-	}
-
-
-	public void enterFirstName(String First_Name) {
-		ac.waitForElementToappear(first_name);
-		first_name.clear();
-
-		first_name.sendKeys(First_Name);
-
-	}
-
-	public void enterLastName(String Last_Name) {
-		ac.waitForElementToappear(last_name);
-		last_name.clear();
-
-		last_name.sendKeys(Last_Name);
-
-	}
-
-	public void Name_Status(String status) {
-		if (status == "fail") {
-			System.out.println("Please enter alphabets");
-		} else {
-			System.out.println("success");
-		}
-	}
-
 	public void selectExistingMorbidity() {
 		String javascript = "arguments[0].scrollIntoView()";
 		executor.executeScript(javascript, ExistingMorbidity);
@@ -222,10 +133,10 @@ public class ExistingMorbidities {
 	}
 
 	public void ClickonRightarrow() {
-		
+
 		executor.executeScript("arguments[0].scrollIntoView()", EmRightArrow);
 		ac.actionClassMoveTo(EmRightArrow);
-		
+
 	}
 
 	public String getText() {
@@ -242,7 +153,7 @@ public class ExistingMorbidities {
 	}
 
 	public void ValidateExistMorbidityOther() {
-		
+
 		executor.executeScript("arguments[0].scrollIntoView()", EmTitle);
 
 		executor.executeScript("arguments[0].scrollIntoView()", ExistMorbidityOther);
@@ -301,11 +212,10 @@ public class ExistingMorbidities {
 	}
 //Physical Fitness
 
-	public void selectPFOption()
-	{
+	public void selectPFOption() {
 		String javascript = "arguments[0].scrollIntoView()";
 		executor.executeScript(javascript, HabitOption);
-	
+
 		ac.actionClassMoveTo(PhysicalFitnessOption);
 	}
 
@@ -313,12 +223,10 @@ public class ExistingMorbidities {
 		ac.actionClassMoveTo(PFRightArrow);
 	}
 
-	
-public String fitnessOptgetText() {
-		
+	public String fitnessOptgetText() {
+
 		return PhysicalFitnessOption.getText();
 	}
-	
 
 	// Family History
 
@@ -334,8 +242,8 @@ public String fitnessOptgetText() {
 	}
 
 	public String FamHistoryOption1GetTxt() {
-		System.out.println( FamHistoryOption1.getText());
-		
+		System.out.println(FamHistoryOption1.getText());
+
 		return FamHistoryOption1.getText();
 	}
 
@@ -375,36 +283,40 @@ public String fitnessOptgetText() {
 	}
 
 	public void FitnessDropdownOption() {
-	
+
 		ac.actionClassMoveTo(option);
 
 	}
 	// Surgeries
 
 	public void clickSurgeryCkbx() {
-	
+
 		executor.executeScript("arguments[0].click();", surgeryCkBX);
 	}
+	public boolean SurgeryCkbxChecked() {
 
+		executor.executeScript("arguments[0].click();", surgeryCkBX);
+		return true;
+	}
 	public void surgeryTxtbx(String surgery) throws InterruptedException {
-		//executor.executeScript("arguments[0].scrollIntoView()", surgeryTxtbx);
-		//ac.waitForElementToappear(surgeryTxtbx);
-		//ac.actionClass(surgeryTxtbx, surgery);
-		//surgeryTxtbx.sendKeys(surgery);
+		// executor.executeScript("arguments[0].scrollIntoView()", surgeryTxtbx);
+		// ac.waitForElementToappear(surgeryTxtbx);
+		// ac.actionClass(surgeryTxtbx, surgery);
+		// surgeryTxtbx.sendKeys(surgery);
 		WebElement surgeries = driver.findElement(By.xpath("//input[@name='Surgeries_with_in_6_months__c']"));
-        Thread.sleep(3000);
+		Thread.sleep(3000);
 		String javascript = "arguments[0].scrollIntoView()";
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript(javascript,surgeries);
-		
+		executor.executeScript(javascript, surgeries);
+
 		Thread.sleep(3000);
 		surgeries.click();
 		Thread.sleep(3000);
-		//actions.moveToElement(surgeries).click().build().perform();
-		WebElement surgeryTxTbx=driver.findElement(By.xpath("//input[@name='how_to_make_a_text_box_visble_if_a_check__c']"));
-        ac.actionClass(surgeryTxTbx, surgery);
-		
-		
+		// actions.moveToElement(surgeries).click().build().perform();
+		WebElement surgeryTxTbx = driver
+				.findElement(By.xpath("//input[@name='how_to_make_a_text_box_visble_if_a_check__c']"));
+		ac.actionClass(surgeryTxTbx, surgery);
+
 	}
 
 	// International travel
@@ -426,10 +338,8 @@ public String fitnessOptgetText() {
 
 	public void ImmuneDropdownOption() {
 
-		//executor.executeScript("arguments[0].click();", ImmunizationOption);
 		ac.actionClassMoveTo(ImmunizationOption);
 
 	}
 
-	
 }

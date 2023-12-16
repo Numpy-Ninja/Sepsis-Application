@@ -26,23 +26,6 @@ public class PatientObject {
 
 	// Locators
 
-	@FindBy(id = "username")
-	static WebElement user;
-	@FindBy(id = "password")
-	static WebElement pwd;
-	@FindBy(id = "Login")
-	WebElement login_button;
-	@FindBy(xpath = "//div[@class='slds-icon-waffle']")
-	WebElement waffle_btn;
-	@FindBy(xpath = "//p[contains(.,'Sepsis')]")
-	WebElement sepsisApp;
-	@FindBy(xpath = "//a[@title='Patients']")
-	WebElement patient_object;
-	@FindBy(xpath = "//div[contains(text(),'New')]")
-	WebElement new_btn;
-	@FindBy(xpath = "//span[contains(.,'Next')]")
-	WebElement next_btn;
-
 	/// PersonalInfo/////
 	@FindBy(xpath = "//input[@name='First_Name__c']")
 	WebElement first_name;
@@ -138,16 +121,7 @@ public class PatientObject {
 		}
 	}
 
-	public void newPatientForm(String username, String password) {
-		user.clear();
-		user.sendKeys(username);
-		pwd.clear();
-		pwd.sendKeys(password);
-		login_button.click();
-		waffle_btn.click();
-		sepsisApp.click();
 
-	}
 
 	/// Personal Info ///
 	public void personalInfo(String firstName, String lastName, String dob, String insuranceDetails) {
