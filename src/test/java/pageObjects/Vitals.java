@@ -71,7 +71,7 @@ public class Vitals {
 
 	@FindBy(xpath = "//button[@title='Select a List View: Patients']")
 	private static WebElement listView;
-	@FindBy(xpath = "//span[normalize-space()='Existing Patients List View']")
+	@FindBy(xpath = "//span[text()='Existing Patients List View']")
 	private static WebElement existingPatientList;
 	@FindBy(xpath = "//thead/tr/th[3]/div/span")
 	private static WebElement sortToggle;

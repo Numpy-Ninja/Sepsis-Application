@@ -46,7 +46,7 @@ public class PatientObject {
 	WebElement dateOfBirth;
 	@FindBy(xpath = "//button[@aria-label='Race & Ethnicity, --None--']")
 	WebElement raceethnicity_combobox;
-	@FindBy(xpath = "//span[@title='Asian']")
+	@FindBy(xpath = "//span[@title='American']")
 	WebElement raceethnicity_value;
 	@FindBy(xpath = "//input[@name='Have_Insurance__c']")
 	WebElement insurance_checkbox;

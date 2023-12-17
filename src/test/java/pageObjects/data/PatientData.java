@@ -13,13 +13,16 @@ public class PatientData {
 	private String gender;
 	private String dob;
 	private String phoneNumber;
+	private String email;
 	private String emergencyContactNumber;
+	private String doctorEmail;
 	private String otherExistingMorbidities;
 	private String fitnessFrequency;
 	private String immunization;
 	private String currentMedication;
 	private String temperature;
 	private String heartRate;
+	private String respiratoryRate;
 	private String bp;
 	private String glucose;
 	private String glucoseValue;

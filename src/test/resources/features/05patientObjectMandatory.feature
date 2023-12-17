@@ -11,9 +11,20 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     Examples: 
       | SheetName        | Rownumber |
       |   PatientDetails    |     0     |
+      
+   @TS_02ValidatingtheNewPatientformWithInvalidData
+    Scenario Outline: Validate the patient information form submission with invalid phonefield
+    Given Patient is on same patient form
+    When Patient submits new patient form with invalid data for phone field from "<SheetName>" and <Rownumber>
+    Then Error message "US phone numbers should be in this format: (999) 999-9999." is displayed under phone field
+    
+    
+    Examples: 
+      | SheetName        | Rownumber |
+      | PatientDetails      |     1     |
      
-  @TS_02ValidatingtheNewPatientformWithInvalidData
-    Scenario Outline: Validate the patient information form submission with invalid data
+  @TS_03ValidatingtheNewPatientformWithInvalidCharacter
+    Scenario Outline: Validate the patient information form submission with invalid character
     Given Patient is on same patient form
     When Patient submits new patient form with invalid data for textfields from "<SheetName>" and <Rownumber>
     Then Error message "Please enter only Alphabets" is displayed under textfields
@@ -21,9 +32,20 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     1     |
+      | PatientDetails      |     2     |
       
-  @TS_02ValidatingtheNewPatientformWithInvalidData
+   @TS_04ValidatingtheNewPatientformWithInvalidBPdata
+    Scenario Outline: Validate the patient information form submission with invalid data for BP
+    Given Patient is on same patient form
+    When Patient submits new patient form with invalid data for BP field from "<SheetName>" and <Rownumber>
+    Then Error message "BP should be in Systolic and Diastolic" is displayed under BP field 
+    
+    
+    Examples: 
+      | SheetName        | Rownumber |
+      | PatientDetails      |     3     |   
+      
+  @TS_05ValidatingtheNewPatientformWithInvalidDOB
     Scenario Outline: Validate the patient information form submission with invalid data
     Given Patient is on same patient form
     When Patient submits new patient form with invalid data for DOB from "<SheetName>" and <Rownumber>
@@ -32,9 +54,9 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     2     |
+      | PatientDetails      |     4     |
   
-  @TS_02ValidatingtheNewPatientformWithInvalidData
+  @TS_06ValidatingtheNewPatientformWithInvalidExisMorb
     Scenario Outline: Validate the patient information form submission with invalid data
     Given Patient is on same patient form
     When Patient submits new patient form entering other for morbidities from "<SheetName>" and <Rownumber>
@@ -43,14 +65,59 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     3    |
+      | PatientDetails      |     5    |
       
-  @TS_03ValidatingtheNewPatientformWithValidData  
-  Scenario Outline: Validate attendance form submission with valid data
+  @TS_07ValidatingtheNewPatientformWithInValidEmail 
+  Scenario Outline: Validate attendance form submission with invalid data
     Given Patient is on same patient form
-    When Patient submits new patient form with valid data from "<SheetName>" and <Rownumber>
-    Then Patient form is successfully created with the success message
+    When Patient submits new patient form with invalid email from "<SheetName>" and <Rownumber>
+    Then Error message "You have entered an invalid format." is displayed under email
     
     Examples: 
       | SheetName        | Rownumber |
-      | PatientDetails      |     4   |  
+      | PatientDetails      |     6   |  
+      
+  @TS_08ValidatingtheNewPatientformWithValidDataForLow
+  Scenario Outline: Validate attendance form submission with valid data for Low risk
+    Given Patient is on New patient form for entering patient info
+    When Patient submits new patient form with valid data for low from "<SheetName>" and <Rownumber>
+    Then Patient can see the risk of sepsis status to be "LOW" on the saved form
+    
+    Examples: 
+      | SheetName        | Rownumber |
+      | PatientDetails    |    7   | 
+      | PatientDetails    | 8   |
+    
+  @TS_09ValidatingtheNewPatientformWithValidDataForMedium
+  Scenario Outline: Validate attendance form submission with valid data for Medium risk
+    Given Patient is on same patient form
+    When Patient submits new patient form with valid data for medium from "<SheetName>" and <Rownumber>
+    Then Patient can see the risk of sepsis status to be "Medium" on the saved patient form
+    
+    Examples: 
+      | SheetName        | Rownumber |
+      | PatientDetails    |    9   | 
+      | PatientDetails    | 10   |      
+      
+  @TS_10ValidatingtheNewPatientformWithValidDataForHigh
+  Scenario Outline: Validate attendance form submission with valid data for High risk
+    Given Patient is on same patient form
+    When Patient submits new patient form with valid data for high from "<SheetName>" and <Rownumber>
+    Then Patient can see the risk of sepsis field to be "High" on the saved form 
+    
+    Examples: 
+      | SheetName        | Rownumber |
+      | PatientDetails    |    11   | 
+      | PatientDetails    | 12   |         
+      
+  @TS_11ValidatingtheNewPatientformWithValidDataForCritical
+  Scenario Outline: Validate attendance form submission with valid data for Critical risk
+    Given Patient is on same patient form
+    When Patient submits new patient form with valid data for critical from "<SheetName>" and <Rownumber>
+    Then Patient can see the risk of sepsis field to be "Critical" on the saved patient form
+    
+    Examples: 
+      | SheetName        | Rownumber |
+      | PatientDetails    |    13   | 
+      | PatientDetails    | 14   |          
+      

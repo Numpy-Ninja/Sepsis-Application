@@ -44,11 +44,16 @@ public class PatientObjectMandatory {
 	/// Patient Contact Info //
 	@FindBy(xpath = "//input[@name='Phone__c']")
 	WebElement phone_textbox;
-	
-	//Emergency Contact Info//
+	@FindBy(xpath = "//input[@name='Email__c']")
+	WebElement email;
+
+	// Emergency Contact Info//
 	@FindBy(xpath = "//input[@name='Emergency_Contact_Number__c']")
 	WebElement emergency_contactnumber;
-	
+
+	// Doctor's Contact //
+	@FindBy(xpath = "//input[@name='Doctor_Email__c']")
+	WebElement doctor_email;
 
 	// Existing Morbidity//
 	@FindBy(xpath = "//div[@role='group']/div[contains(text(),'Existing Morbi')]/../div[2]//span[(text()='Chosen')]/../div//span/span")
@@ -57,12 +62,12 @@ public class PatientObjectMandatory {
 	private static WebElement ExisMorbRefresh;
 	@FindBy(xpath = "(//span[@title='BP'])[1]")
 	private static WebElement ExistingMorbidity;
+	@FindBy(xpath = "(//span[@title='None'])[1]")
+	private static WebElement ExistingMorbidityNone;
 	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M14 43.7V8')])[1]")
 	private static WebElement EmRightArrow;
 	@FindBy(xpath = "//button[@title='Undo Existing Morbidities']")
 	private static WebElement ExistMorbidityUndo;
-	@FindBy(xpath = "(//span[@class='slds-has-error slds-form-element__help'])[1]")
-	private static WebElement ErrorMsg;
 	@FindBy(xpath = "(//div[@class='slds-dueling-list__options']//li[11]//span[@title='Other'])[1]")
 	private static WebElement ExistMorbidityOther;
 	@FindBy(xpath = "//input[@name='Comment_Here__c']")
@@ -153,6 +158,14 @@ public class PatientObjectMandatory {
 	private static WebElement reviewFieldLink;
 	@FindBy(xpath = "//div//label[text()='First Name']/../../div[2]")
 	private static WebElement errorMsgIncompleteField;
+	@FindBy(xpath = "//div[@class='fieldLevelErrors']//a[text()='Phone']")
+	private static WebElement reviewInvalidPhoneFieldLink;
+	@FindBy(xpath = "//div[text()='US phone numbers should be in this format: (999) 999-9999.']")
+	private static WebElement errorMsgInvalidPhonenumberField;
+	@FindBy(xpath = "//div[@class='fieldLevelErrors']//a[text()='BP']")
+	private static WebElement reviewInvalidBPFieldLink;
+	@FindBy(xpath = "//div[text()='BP should be in Systolic and Diastolic']")
+	private static WebElement errorMsgInvalidBPField;
 	@FindBy(xpath = "//div[@class='fieldLevelErrors']//a[text()='Last Name']")
 	private static WebElement reviewInvalidFieldLink;
 	@FindBy(xpath = "//div[@role='alert'][contains(text(),'Please enter only Alp')]")
@@ -165,8 +178,12 @@ public class PatientObjectMandatory {
 	private static WebElement reviewOtherExisMorLink;
 	@FindBy(xpath = "//div[@role='alert'][contains(text(),'Please explain only other existing morb')]")
 	private static WebElement errorMsgOtherExisMorField;
+	@FindBy(xpath = "//div[@class='fieldLevelErrors']//a[text()='Email']")
+	private static WebElement reviewInvalidEmailLink;
+	@FindBy(xpath = "//div[text()='You have entered an invalid format.']")
+	private static WebElement errorMsgInvalidEmailField;
 
-	//Success Msg//
+	// Success Msg//
 	@FindBy(xpath = "//span[contains(@data-aura-class,'forceActionsText')]")
 	private static WebElement successMsgPatientCreation;
 	@FindBy(xpath = "//span[@class='toastMessage slds-text-heading--small forceActionsText']")
@@ -181,6 +198,14 @@ public class PatientObjectMandatory {
 	private static WebElement lastElement;
 	@FindBy(xpath = "//lightning-formatted-text[@slot='primaryField']")
 	private static WebElement LastpatientId;
+    @FindBy(xpath = "//button[@title='Close']")
+    private static WebElement successMsgClose;
+    
+	// Risk of Sepsis //
+    @FindBy(xpath = "//tbody/tr[1]/td[4]/span/span")
+    private static WebElement riskOfSepsis;
+    
+  //tbody/tr[1]/td[4]/span/span
 
 	// Constructor
 	public PatientObjectMandatory() {
@@ -193,6 +218,7 @@ public class PatientObjectMandatory {
 		executor.executeScript("arguments[0].click();", patient_object);
 
 	}
+
 	public void newPatientform() {
 		executor.executeScript("arguments[0].scrollIntoView()", new_btn);
 		new_btn.click();
@@ -201,6 +227,13 @@ public class PatientObjectMandatory {
 	public void selectExistingMorbidities() {
 		executor.executeScript("arguments[0].scrollIntoView()", ExistingMorbidity);
 		ExistingMorbidity.click();
+		executor.executeScript("arguments[0].scrollIntoView()", EmRightArrow);
+		ac.actionClassMoveTo(EmRightArrow);
+	}
+
+	public void selectExistingMorbiditiesNone() {
+		executor.executeScript("arguments[0].scrollIntoView()", ExistingMorbidityNone);
+		ExistingMorbidityNone.click();
 		executor.executeScript("arguments[0].scrollIntoView()", EmRightArrow);
 		ac.actionClassMoveTo(EmRightArrow);
 	}
@@ -265,11 +298,20 @@ public class PatientObjectMandatory {
 		return expectedAlertMsg;
 
 	}
-
+	
+	public String getRiskOfSepsis() {
+		ac.waitForElementToappear(riskOfSepsis);
+		return riskOfSepsis.getText();
+	}
 
 	public void cancelButton() {
 		executor.executeScript("arguments[0].scrollIntoView()", CancelBtn);
 		CancelBtn.click();
+	}
+
+	public void succmsgCloseIcon() {
+		ac.waitForElementToappear(successMsgClose);
+		successMsgClose.click();
 	}
 	
 	public void successMsgText() {
@@ -277,6 +319,7 @@ public class PatientObjectMandatory {
 		successMsgPatientCreation.getText();
 	}
 
+	// Missing field //
 	public String hitSnagError() {
 		return hitSnagErrorMsg.getText();
 	}
@@ -290,6 +333,30 @@ public class PatientObjectMandatory {
 		return errorMsgIncompleteField.getText();
 	}
 
+	// Invalid Phone field //
+
+	public void reviewInvalidPhoneFieldClick() {
+		reviewInvalidPhoneFieldLink.click();
+
+	}
+
+	public String errorMsgInvalidPhonenumber() {
+		return errorMsgInvalidPhonenumberField.getText();
+	}
+
+	// Invalid BP field //
+
+	public void reviewInvalidBPFieldClick() {
+		reviewInvalidBPFieldLink.click();
+
+	}
+
+	public String errorMsgInvalidBP() {
+		return errorMsgInvalidBPField.getText();
+	}
+
+	// Invalid text field //
+
 	public void reviewInvalidFieldClick() {
 		reviewInvalidFieldLink.click();
 
@@ -298,6 +365,8 @@ public class PatientObjectMandatory {
 	public String errorMsgInvalidChar() {
 		return errorMsgInvalidField.getText();
 	}
+
+	// Invalid DOB field //
 
 	public void reviewInvalidDOBClick() {
 		reviewInvalidDOBLink.click();
@@ -308,6 +377,8 @@ public class PatientObjectMandatory {
 		return errorMsgInvalidDOBField.getText();
 	}
 
+	// Invalid ExisMorb //
+
 	public void reviewOtherExisMorClick() {
 		reviewOtherExisMorLink.click();
 
@@ -316,6 +387,19 @@ public class PatientObjectMandatory {
 	public String errorMsgOtherExisMor() {
 		return errorMsgOtherExisMorField.getText();
 	}
+
+	// Invalid Email field //
+
+	public void reviewInvalidEmailClick() {
+		reviewInvalidEmailLink.click();
+
+	}
+
+	public String errorMsgInvalidEmail() {
+		return errorMsgInvalidEmailField.getText();
+	}
+
+	// DropDown click //
 
 	public void clickGender(String genderOption) {
 		driver.findElement(By.xpath("//div/lightning-base-combobox-item//span[2]//span[@title='" + genderOption + "']"))
@@ -345,8 +429,10 @@ public class PatientObjectMandatory {
 		dateOfBirth.click();
 		dateOfBirth.sendKeys(patientData.getDob());
 		phone_textbox.sendKeys(patientData.getPhoneNumber());
+		email.sendKeys(patientData.getEmail());
 		executor.executeScript("arguments[0].scrollIntoView()", emergency_contactnumber);
-        emergency_contactnumber.sendKeys(patientData.getEmergencyContactNumber());
+		emergency_contactnumber.sendKeys(patientData.getEmergencyContactNumber());
+		doctor_email.sendKeys(patientData.getDoctorEmail());
 		otherExisMTextBox.sendKeys(patientData.getOtherExistingMorbidities());
 		executor.executeScript("arguments[0].scrollIntoView()", Fitness);
 		Fitness.click();
@@ -361,6 +447,7 @@ public class PatientObjectMandatory {
 		Temperature_Value.sendKeys(patientData.getTemperature());
 		HeartRate_Value.clear();
 		HeartRate_Value.sendKeys(patientData.getHeartRate());
+		RespiratoryRate.sendKeys(patientData.getRespiratoryRate());
 		BP_Value.clear();
 		BP_Value.sendKeys(patientData.getBp());
 		GlucoseOption.click();

@@ -29,7 +29,7 @@ Feature: Validating Medication and Vitals Information
   Scenario: Validate BP
     Given Patient is on Sepsis App Patients page
     When Patient clicks on BP textBox
-    Then Patient enter BP "120" in textBox
+    Then Patient enter BP "110/80" in textBox
 
   @TS_07Glucose
   Scenario: Validate Glucose
@@ -54,3 +54,4 @@ Feature: Validating Medication and Vitals Information
     Given Patient is on Sepsis App Patients page
     When Patient clicks on save button
     Then the form should be  saved succesfully by displaying a message 
+    
