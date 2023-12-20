@@ -30,18 +30,24 @@ public class PatientObjectMandatory {
 	/// PersonalInfo/////
 	@FindBy(xpath = "//a[@title='Patients']")
 	WebElement patient_object;
-	@FindBy(xpath = "//div[contains(text(),'New')]")
+	@FindBy(xpath = "(//*[name()='path' and contains(@d,'M47.6 17.8L27.1 38')])[1]/../../../../../..")
+	WebElement patientObject;
+	@FindBy(xpath = "//div[contains(text(),'New')]/..")
 	WebElement new_btn;
+	@FindBy(xpath = "(//span[text()='New Patient'])[1]/../..")
+	WebElement newPatient;
 	@FindBy(xpath = "//input[@name='First_Name__c']")
 	WebElement first_name;
 	@FindBy(xpath = "//input[@name='Last_Name__c']")
 	WebElement last_name;
-	@FindBy(xpath = "//button[contains(@aria-label,'Gender')]//span")
+	@FindBy(xpath = "//button[contains(@aria-label,'Gender')]")
 	WebElement gender;
 	@FindBy(xpath = "//input[@name='DOB__c']")
 	WebElement dateOfBirth;
 
 	/// Patient Contact Info //
+	@FindBy(xpath = "//label[text()='Phone']")
+	WebElement phone_label;
 	@FindBy(xpath = "//input[@name='Phone__c']")
 	WebElement phone_textbox;
 	@FindBy(xpath = "//input[@name='Email__c']")
@@ -190,22 +196,25 @@ public class PatientObjectMandatory {
 	private static WebElement alertMsgSave;
 	@FindBy(xpath = "//button[@title='Select a List View: Patients']")
 	private static WebElement listView;
-	@FindBy(xpath = "//span[normalize-space()='Existing Patients List View']")
+	@FindBy(xpath = "//span[@class=' virtualAutocompleteOptionText' and text()='Existing Patients List View']")
 	private static WebElement existingPatientList;
+	@FindBy(xpath = "//table[@aria-label='Existing Patients List View']")
+	private static WebElement tableView;
 	@FindBy(xpath = "//thead/tr/th[3]/div/span")
 	private static WebElement sortToggle;
 	@FindBy(xpath = "//tbody/tr[1]/th[1]/span[1]/a[1]")
 	private static WebElement lastElement;
 	@FindBy(xpath = "//lightning-formatted-text[@slot='primaryField']")
 	private static WebElement LastpatientId;
-    @FindBy(xpath = "//button[@title='Close']")
-    private static WebElement successMsgClose;
-    
+	@FindBy(xpath = "//button[@title='Close']")
+	private static WebElement successMsgClose;
+
 	// Risk of Sepsis //
-    @FindBy(xpath = "//tbody/tr[1]/td[4]/span/span")
-    private static WebElement riskOfSepsis;
-    
-  //tbody/tr[1]/td[4]/span/span
+	@FindBy(xpath = "//tbody/tr[1]/td[4]/span/span")
+	private static WebElement riskOfSepsis;
+	@FindBy(xpath = "//div[contains(@class,'windowViewMode-normal')]//span[text()='Risk of Sepsis']/../..//lightning-formatted-text")
+	private static WebElement riskOfSepsisStatus;
+	// tbody/tr[1]/td[4]/span/span
 
 	// Constructor
 	public PatientObjectMandatory() {
@@ -216,12 +225,29 @@ public class PatientObjectMandatory {
 	// New Patient form//
 	public void patientObject_select() {
 		executor.executeScript("arguments[0].click();", patient_object);
-
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void newPatientform() {
-		executor.executeScript("arguments[0].scrollIntoView()", new_btn);
+		ac.waitForElementToappear(new_btn);
 		new_btn.click();
+	}
+
+	public void patientObjectSelect() {
+		//executor.executeScript("arguments[0].click();", patientObject);
+		patientObject.click();
+		ac.waitForElementToappear(newPatient);
+		newPatient.click();
+	}
+
+	public void newPatientformClick() {
+		ac.waitForElementToappear(newPatient);
+		newPatient.click();
 	}
 
 	public void selectExistingMorbidities() {
@@ -271,6 +297,14 @@ public class PatientObjectMandatory {
 		return alertMsgSave.getText();
 	}
 
+	public String getPatientIdFromSaveSuccessMsg() {
+		String str = getalertMsg();
+		System.out.println(str);
+		String patientRecord = str.substring(9, 16);
+		System.out.println(patientRecord);
+		return patientRecord;
+	}
+
 	public void selectListView() {
 		ac.waitForElementToappear(listView);
 		executor.executeScript("arguments[0].click();", listView);
@@ -281,8 +315,23 @@ public class PatientObjectMandatory {
 		executor.executeScript("arguments[0].click();", existingPatientList);
 	}
 
+	public void getTableViewOfExisPatients() {
+		ac.waitForElementToappear(tableView);
+	}
+
 	public void SortDesc() {
 		executor.executeScript("arguments[0].click();", sortToggle);
+	}
+
+	public void lastPatientClick() {
+		ac.waitForElementToappear(lastElement);
+		lastElement.click();
+
+	}
+
+	public String getLastPatientId() {
+		ac.waitForElementToappear(lastElement);
+		return lastElement.getText();
 	}
 
 	public String getLastElementText() {
@@ -298,7 +347,16 @@ public class PatientObjectMandatory {
 		return expectedAlertMsg;
 
 	}
-	
+
+	public String getSepsisRisk() {
+
+		//executor.executeScript("window.scrollTo(0,500)");
+		String risk = riskOfSepsisStatus.getText();
+		System.out.println(risk);
+		return risk;
+
+	}
+
 	public String getRiskOfSepsis() {
 		ac.waitForElementToappear(riskOfSepsis);
 		return riskOfSepsis.getText();
@@ -313,7 +371,7 @@ public class PatientObjectMandatory {
 		ac.waitForElementToappear(successMsgClose);
 		successMsgClose.click();
 	}
-	
+
 	public void successMsgText() {
 		executor.executeScript("arguments[0].scrollIntoView()", successMsgPatientCreation);
 		successMsgPatientCreation.getText();
@@ -428,9 +486,15 @@ public class PatientObjectMandatory {
 		clickGender(patientData.getGender());
 		dateOfBirth.click();
 		dateOfBirth.sendKeys(patientData.getDob());
+		//executor.executeScript("arguments[0].scrollIntoView(true);", phone_textbox);
+		ac.actionClassMoveTo(phone_textbox);
 		phone_textbox.sendKeys(patientData.getPhoneNumber());
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		email.sendKeys(patientData.getEmail());
-		executor.executeScript("arguments[0].scrollIntoView()", emergency_contactnumber);
 		emergency_contactnumber.sendKeys(patientData.getEmergencyContactNumber());
 		doctor_email.sendKeys(patientData.getDoctorEmail());
 		otherExisMTextBox.sendKeys(patientData.getOtherExistingMorbidities());

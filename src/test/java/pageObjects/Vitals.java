@@ -68,6 +68,8 @@ public class Vitals {
 	private static WebElement patientID;
 	@FindBy(xpath = "//span[@class='toastMessage slds-text-heading--small forceActionsText']")
 	private static WebElement alertMsgSave;
+	@FindBy(xpath = "//button[@title='Close']")
+	private static WebElement successMsgClose;
 
 	@FindBy(xpath = "//button[@title='Select a List View: Patients']")
 	private static WebElement listView;
@@ -267,5 +269,10 @@ public class Vitals {
 		System.out.println(expectedAlertMsg);
 		return expectedAlertMsg;
 
+	}
+
+	public void succmsgCloseIcon() {
+		ac.waitForElementToappear(successMsgClose);
+		successMsgClose.click();
 	}
 }

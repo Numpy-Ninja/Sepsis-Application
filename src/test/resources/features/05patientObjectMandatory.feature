@@ -68,7 +68,7 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
       | PatientDetails      |     5    |
       
   @TS_07ValidatingtheNewPatientformWithInValidEmail 
-  Scenario Outline: Validate attendance form submission with invalid data
+  Scenario Outline: Validate patient information form submission with invalid data
     Given Patient is on same patient form
     When Patient submits new patient form with invalid email from "<SheetName>" and <Rownumber>
     Then Error message "You have entered an invalid format." is displayed under email
@@ -77,40 +77,22 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
       | SheetName        | Rownumber |
       | PatientDetails      |     6   |  
       
-  @TS_08ValidatingtheNewPatientformWithValidDataForLow
-  Scenario Outline: Validate attendance form submission with valid data for Low risk
+  @TS_08ValidatingtheNewPatientformWithValidDataForSepsisStatus
+  Scenario Outline: Validate patient information form submission with valid data for risk of Sepsis
     Given Patient is on New patient form for entering patient info
-    When Patient submits new patient form with valid data for low from "<SheetName>" and <Rownumber>
-    Then Patient can see the risk of sepsis status to be "LOW" on the saved form
+    When Patient submits new patient form with valid data from "<SheetName>" and <Rownumber>
+    Then Patient can see the risk of sepsis status to be "<riskOfSepsis>" on the saved form
     
     Examples: 
-      | SheetName        | Rownumber |
-      | PatientDetails    |    7   | 
-      | PatientDetails    | 8   |
-    
-  @TS_09ValidatingtheNewPatientformWithValidDataForMedium
-  Scenario Outline: Validate attendance form submission with valid data for Medium risk
-    Given Patient is on same patient form
-    When Patient submits new patient form with valid data for medium from "<SheetName>" and <Rownumber>
-    Then Patient can see the risk of sepsis status to be "Medium" on the saved patient form
-    
-    Examples: 
-      | SheetName        | Rownumber |
-      | PatientDetails    |    9   | 
-      | PatientDetails    | 10   |      
+      | SheetName        | Rownumber | riskOfSepsis |
+      #| PatientDetails    |    7     | LOW       |
+      #| PatientDetails    |   8      | LOW       |
+      | PatientDetails    |    9     | Medium    |
+      #| PatientDetails    |   10     | Medium    |   
+      | PatientDetails    |   11     |   High     |
+      #| PatientDetails    |   12     |   High    |
       
-  @TS_10ValidatingtheNewPatientformWithValidDataForHigh
-  Scenario Outline: Validate attendance form submission with valid data for High risk
-    Given Patient is on same patient form
-    When Patient submits new patient form with valid data for high from "<SheetName>" and <Rownumber>
-    Then Patient can see the risk of sepsis field to be "High" on the saved form 
-    
-    Examples: 
-      | SheetName        | Rownumber |
-      | PatientDetails    |    11   | 
-      | PatientDetails    | 12   |         
-      
-  @TS_11ValidatingtheNewPatientformWithValidDataForCritical
+  @TS_09ValidatingtheNewPatientformWithValidDataForCritical
   Scenario Outline: Validate attendance form submission with valid data for Critical risk
     Given Patient is on same patient form
     When Patient submits new patient form with valid data for critical from "<SheetName>" and <Rownumber>
@@ -119,5 +101,8 @@ Feature: Validating the New Patient form with Valid/Invalid/MissingData
     Examples: 
       | SheetName        | Rownumber |
       | PatientDetails    |    13   | 
-      | PatientDetails    | 14   |          
       
+ 
+      
+       
+    

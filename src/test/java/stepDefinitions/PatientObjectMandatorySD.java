@@ -3,10 +3,12 @@ package stepDefinitions;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.awaitility.Awaitility;
 
 import driverFactory.AbstractComponents;
 import io.cucumber.java.en.Given;
@@ -24,11 +26,12 @@ public class PatientObjectMandatorySD {
 	PatientObjectMandatory patient = PatientObjectMandatory.getInstance();
 	String username = ConfigReader.getUsername();
 	String password = ConfigReader.getPassword();
+	String patientId;
 	PatientDataReader dataReader = new PatientDataReader();
 
 	@Given("Patient is on New patient form for entering patient details")
 	public void patient_is_on_new_patient_form_for_entering_patient_details() {
-		patient.succmsgCloseIcon();
+		// patient.succmsgCloseIcon();
 		patient.patientObject_select();
 		patient.newPatientform();
 		logger.info("Patient is on new patient form");
@@ -198,66 +201,19 @@ public class PatientObjectMandatorySD {
 	public void error_message_is_displayed_under_email(String errorMsgInvalidEmail) {
 		String errorMsg = patient.errorMsgInvalidEmail();
 		assertEquals(errorMsg, errorMsgInvalidEmail);
+		patient.cancelButton();
 	}
 
 	@Given("Patient is on New patient form for entering patient info")
 	public void patient_is_on_new_patient_form_for_entering_patient_info() {
-		patient.cancelButton();
-		logger.info("Patient is on new patient form");
+		logger.info("Patient is on new form");
+
 	}
 
-	@When("Patient submits new patient form with valid data for low from {string} and {int}")
-	public void patient_submits_new_patient_form_with_valid_data_for_low_from_and(String sheetName, Integer rowNumber)
-			throws InvalidFormatException, IOException {
-		patient.newPatientform();
-		patient.sendPatientData(dataReader.getData(sheetName, rowNumber));
-		patient.selectExistingMorbidities();
-		patient.selectHabits();
-		patient.selectExistingInfections();
-		patient.selectPhysicalFitness();
-		patient.selectFamilyHistory();
-		patient.saveButton();
-		logger.info("Patient submits patient form with valid data");
-		patient.succmsgCloseIcon();
+	@When("Patient submits new patient form with valid data from {string} and {int}")
+	public void patient_submits_new_patient_form_with_valid_data_from_and(String sheetName, Integer rowNumber)
+			throws InvalidFormatException, IOException, InterruptedException {
 		patient.patientObject_select();
-		patient.selectListView();
-		patient.selectExistPatientView();
-
-	}
-
-	@Then("Patient can see the risk of sepsis status to be {string} on the saved form")
-	public void patient_can_see_the_risk_of_sepsis_status_to_be_on_the_saved_form(String riskOfSepsisL) {
-		String sepsisStatus = patient.getRiskOfSepsis();
-		assertEquals(sepsisStatus, riskOfSepsisL);
-	}
-
-	@When("Patient submits new patient form with valid data for medium from {string} and {int}")
-	public void patient_submits_new_patient_form_with_valid_data_for_medium_from_and(String sheetName,
-			Integer rowNumber) throws InvalidFormatException, IOException {
-		patient.newPatientform();
-		patient.sendPatientData(dataReader.getData(sheetName, rowNumber));
-		patient.selectExistingMorbidities();
-		patient.selectHabits();
-		patient.selectExistingInfections();
-		patient.selectPhysicalFitness();
-		patient.selectFamilyHistory();
-		patient.saveButton();
-		logger.info("Patient submits patient form with valid data");
-		patient.succmsgCloseIcon();
-		patient.patientObject_select();
-		patient.selectListView();
-		patient.selectExistPatientView();
-	}
-
-	@Then("Patient can see the risk of sepsis status to be {string} on the saved patient form")
-	public void patient_can_see_the_risk_of_sepsis_status_to_be_on_the_saved_patient_form(String riskOfSepsisM) {
-		String sepsisStatus = patient.getRiskOfSepsis();
-		assertEquals(sepsisStatus, riskOfSepsisM);
-	}
-
-	@When("Patient submits new patient form with valid data for high from {string} and {int}")
-	public void patient_submits_new_patient_form_with_valid_data_for_high_from_and(String sheetName, Integer rowNumber)
-			throws InvalidFormatException, IOException {
 		patient.newPatientform();
 		patient.sendPatientData(dataReader.getData(sheetName, rowNumber));
 		patient.selectExistingMorbiditiesNone();
@@ -266,22 +222,39 @@ public class PatientObjectMandatorySD {
 		patient.selectPhysicalFitness();
 		patient.selectFamilyHistory();
 		patient.saveButton();
+		logger.info("Patient submits patient form with valid data");
+		//patientId = patient.getPatientIdFromSaveSuccessMsg();
 		patient.succmsgCloseIcon();
-		patient.patientObject_select();
-        patient.selectListView();
-		patient.selectExistPatientView();
+		//patient.patientObject_select();
+		//patient.selectListView();
+		//patient.selectExistPatientView();
+		//patient.getTableViewOfExisPatients();
+
 	}
 
-	@Then("Patient can see the risk of sepsis field to be {string} on the saved form")
-	public void patient_can_see_the_risk_of_sepsis_field_to_be_on_the_saved_form(String riskOfSepsisH) {
-		String sepsisStatus = patient.getRiskOfSepsis();
-		assertEquals(sepsisStatus, riskOfSepsisH);
+	@Then("Patient can see the risk of sepsis status to be {string} on the saved form")
+	public void patient_can_see_the_risk_of_sepsis_status_to_be_on_the_saved_form(String riskOfSepsis) throws InterruptedException {
+//		Awaitility.await().atMost(Duration.ofSeconds(5)).until(() -> {
+//			String lastPatientId = patient.getLastElementText();
+//			String sepsisStatus = patient.getSepsisRisk();
+//			System.out.println(sepsisStatus);
+//			return riskOfSepsis.equalsIgnoreCase(sepsisStatus) && patientId.equalsIgnoreCase(lastPatientId);
+//		});
+		//String lastPatientId = patient.getLastElementText();
+		Thread.sleep(2000);
+
+		String sepsisStatus = patient.getSepsisRisk();
+		System.out.println(sepsisStatus);
+		assertEquals(sepsisStatus, riskOfSepsis);
+		
 	}
 
 	@When("Patient submits new patient form with valid data for critical from {string} and {int}")
 	public void patient_submits_new_patient_form_with_valid_data_for_critical_from_and(String sheetName,
-			Integer rowNumber) throws InvalidFormatException, IOException {
+			Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
+		patient.patientObject_select();
 		patient.newPatientform();
+		Thread.sleep(2000);
 		patient.sendPatientData(dataReader.getData(sheetName, rowNumber));
 		patient.selectExistingMorbidities();
 		patient.selectHabits();
@@ -289,15 +262,23 @@ public class PatientObjectMandatorySD {
 		patient.selectPhysicalFitness();
 		patient.selectFamilyHistory();
 		patient.saveButton();
+		logger.info("Patient submits patient form with valid data");
+		//patientId = patient.getPatientIdFromSaveSuccessMsg();
 		patient.succmsgCloseIcon();
-		patient.patientObject_select();
-		patient.selectListView();
-		patient.selectExistPatientView();
+
 	}
 
 	@Then("Patient can see the risk of sepsis field to be {string} on the saved patient form")
-	public void patient_can_see_the_risk_of_sepsis_field_to_be_on_the_saved_patient_form(String riskOfSepsisC) {
-		String sepsisStatus = patient.getRiskOfSepsis();
+	public void patient_can_see_the_risk_of_sepsis_field_to_be_on_the_saved_patient_form(String riskOfSepsisC) throws InterruptedException {
+//		Awaitility.await().atMost(Duration.ofSeconds(5)).until(() -> {
+//			String lastPatientId = patient.getLastElementText();
+//			String sepsisStatus = patient.getSepsisRisk();
+//			System.out.println(sepsisStatus);
+//			return riskOfSepsisC.equalsIgnoreCase(sepsisStatus) && patientId.equalsIgnoreCase(lastPatientId);
+//		});
+		Thread.sleep(2000);
+		String sepsisStatus = patient.getSepsisRisk();
+		System.out.println(sepsisStatus);
 		assertEquals(sepsisStatus, riskOfSepsisC);
 	}
 

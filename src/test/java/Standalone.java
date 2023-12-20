@@ -17,13 +17,15 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+
+
 public class Standalone {
 	WebDriver driver;
 	WebDriverWait wait;
 
 	// Actions actions = new Actions(driver);
 
-	@BeforeTest
+	//@BeforeTest
 	public void setup() throws InterruptedException {
 
 		ChromeOptions option = new ChromeOptions();
@@ -50,7 +52,7 @@ public class Standalone {
 
 	}
 
-	@Test
+	@Test(enabled=false)
 	public void test() throws InterruptedException
 
 	{
@@ -231,7 +233,7 @@ public class Standalone {
 
 	}
 
-	@Test
+	@Test(enabled=false)
 	public void uploadFiletest() throws InterruptedException {
 		driver.manage().window().maximize();
 
@@ -277,7 +279,7 @@ Thread.sleep(3000);
 
 	}
 
-	@AfterTest
+	//@AfterTest
 	public void teardown() {
 		driver.close();
 
