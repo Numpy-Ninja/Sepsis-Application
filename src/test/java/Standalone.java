@@ -17,15 +17,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-
-
 public class Standalone {
 	WebDriver driver;
 	WebDriverWait wait;
 
 	// Actions actions = new Actions(driver);
 
-	//@BeforeTest
+	@BeforeTest
 	public void setup() throws InterruptedException {
 
 		ChromeOptions option = new ChromeOptions();
@@ -36,11 +34,12 @@ public class Standalone {
 		driver.findElement(By.id("username")).sendKeys("numpyninjaworkforce@gmail.com");
 		driver.findElement(By.id("password")).sendKeys("Salesforce@1");
 		driver.findElement(By.id("Login")).click();
-		Thread.sleep(3000);
-
+		Thread.sleep(4000);
+		Actions actions = new Actions(driver);
 		WebElement waffle = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", waffle);
+		//executor.executeScript("arguments[0].click();", waffle);
+		actions.moveToElement(waffle).click().build().perform();
 		Thread.sleep(3000);
 
 		driver.findElement(By.xpath("//p[contains(.,'Sepsis')]")).click();
@@ -52,7 +51,7 @@ public class Standalone {
 
 	}
 
-	@Test(enabled=false)
+	@Test
 	public void test() throws InterruptedException
 
 	{
@@ -233,7 +232,7 @@ public class Standalone {
 
 	}
 
-	@Test(enabled=false)
+	@Test
 	public void uploadFiletest() throws InterruptedException {
 		driver.manage().window().maximize();
 
@@ -255,8 +254,17 @@ Thread.sleep(3000);
 
 		executor.executeScript("arguments[0].click();",firstElement);
 		Thread.sleep(3000);
+		executor.executeScript("window.scrollTo(0,500)");
+		
+		WebElement sepsisRisk= driver.findElement(By.xpath("//div[@data-target-selection-name='sfdc:RecordField.Patient__c.Risk_of_Sepsis__c']"));
+		System.out.println(sepsisRisk.getText());
+		String risk = sepsisRisk.getText().substring(15);
+		
+		//String Sepsisstatus = risk[1];
 
-		Thread.sleep(3000);
+System.out.println(risk);
+
+        Thread.sleep(3000);
 		WebElement relatedTab=driver.findElement(By.xpath("//a[@id='relatedListsTab__item']"));
 		executor.executeScript("arguments[0].click();", relatedTab);
 		WebElement upfile = driver.findElement(By.xpath("(//input[@type='file'])[1]"));
@@ -267,7 +275,8 @@ Thread.sleep(3000);
 		upfile.sendKeys("C:\\Users\\shrav\\Downloads\\image (2).png");
 		System.out.println("file uploaded");
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//span[@class=' label bBody'])[3] ")).click();
+		//driver.findElement(By.xpath("(//span[@class='label bBody'])[3] ")).click();
+		driver.findElement(By.xpath("(//span[contains(text(),'Done')])[1]")).click();
 		Thread.sleep(3000);
 		WebElement uploadAlert = driver
 				.findElement(By.xpath("//span[@class='toastMessage slds-text-heading--small forceActionsText']"));
@@ -278,8 +287,31 @@ Thread.sleep(3000);
 		assertEquals(s, "1 file was added to the Patient.");
 
 	}
-
-	//@AfterTest
+@Test
+public void riskofSepsis() throws InterruptedException
+{
+	WebElement listview = driver.findElement(By.xpath("//button[@title='Select a List View: Patients']"));
+	JavascriptExecutor executor = (JavascriptExecutor) driver;
+	executor.executeScript("arguments[0].click();", listview);
+	Thread.sleep(3000);////a[@class='toggle slds-th__action slds-text-link--reset ']
+	WebElement selectlist = driver.findElement(By.xpath("//span[normalize-space()='Existing Patients List View']"));
+	executor.executeScript("arguments[0].click();", selectlist);
+	Thread.sleep(3000);
+	WebElement toggle = driver
+			.findElement(By.xpath("//thead/tr/th[3]/div/span"));
+	executor.executeScript("arguments[0].click();", toggle);
+	Thread.sleep(3000);
+	WebElement firstElement = driver.findElement(By.xpath("//tbody/tr[1]/th[1]/span[1]/a[1]"));
+	executor.executeScript("arguments[0].click();", firstElement);
+	System.out.println(firstElement.getText());
+	Thread.sleep(3000);
+	executor.executeScript("window.scrollTo(0,500)");
+	Thread.sleep(3000);
+	WebElement status=driver.findElement(By.xpath("//lightning-formatted-text[normalize-space()='Normal']"));
+	//WebElement status =driver.findElement(By.cssSelector("flexipage-field:nth-child(7) lightning-formatted-text:nth-child(1)"));
+	
+}	
+	@AfterTest
 	public void teardown() {
 		driver.close();
 

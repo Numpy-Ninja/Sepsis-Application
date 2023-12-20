@@ -21,7 +21,7 @@ Feature: Validating the New Patient information
     
     Examples:
     | phoneNo | emailAddress | country | street | city | zip |
-    |815-456-9999 | kelly@gmail.com | United States | Egmore St | Bayarea  |77433|
+    |815-456-9999 | numpyninjaworkforce@gmail.com| United States | Egmore St | Bayarea  |77433|
 
   @TS_03_ValidateEmergencycontact
   Scenario Outline: Validating the EmergencyContact
@@ -44,7 +44,7 @@ Feature: Validating the New Patient information
     
     Examples:
        |DoctorsName | DoctorsContactNumber | ClinicName | DoctorsEmail |
-       |Klein| 321-456-7890 | BrightClinic | klein@gmail.com |
+       |Klein| 321-456-7890 | BrightClinic | numpyninjaworkforce@gmail.com |
  
   @TS_05_ValidateMedicalHistory
   Scenario Outline: Validating the EmergencyContact
