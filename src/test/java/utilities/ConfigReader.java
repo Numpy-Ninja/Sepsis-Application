@@ -9,7 +9,6 @@ import java.util.Properties;
 
 import org.checkerframework.common.reflection.qual.GetClass;
 
-
 public class ConfigReader {
 
 	private static Properties prop;
@@ -18,6 +17,7 @@ public class ConfigReader {
 
 	/**
 	 * This method is used to load the properties from config.properties file
+	 * 
 	 * @return it returns Properties prop object
 	 */
 	public static void init_prop() {
@@ -39,12 +39,10 @@ public class ConfigReader {
 		}
 	}
 
-	
 	public static void setbrowser(String browser) {
 		browserType = browser;
 	}
-	
-	
+
 	public static String getBrowserType() {
 		String browserType = prop.getProperty("browser");
 		if (browserType != null)
@@ -52,6 +50,7 @@ public class ConfigReader {
 		else
 			throw new RuntimeException("browser not specified in the Configuration.properties file.");
 	}
+
 	public static String getApplicationUrl() {
 		String url = prop.getProperty("SFurl");
 		if (url != null)
@@ -59,21 +58,21 @@ public class ConfigReader {
 		else
 			throw new RuntimeException("url not specified in the Configuration.properties file.");
 	}
-public static String getUsername()
-{
-	String username=prop.getProperty("username");
-	return username;
-	
-}
-public static String getPassword()
-{
 
-	String password=prop.getProperty("password");
-	return password;
-}
-public static String getFilePath()
-{
-	String filePath=prop.getProperty("filePath");
-	return filePath;
-}
+	public static String getUsername() {
+		String username = prop.getProperty("username");
+		return username;
+
+	}
+
+	public static String getPassword() {
+
+		String password = prop.getProperty("password");
+		return password;
+	}
+
+	public static String getFilePath() {
+		String filePath = prop.getProperty("filePath");
+		return filePath;
+	}
 }

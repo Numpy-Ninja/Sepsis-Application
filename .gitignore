@@ -32,3 +32,6 @@ allure-results
 Reports
 
 
+src/test/java/.DS_Store
+.DS_Store
+src/test/resources/Drivers

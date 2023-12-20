@@ -26,6 +26,13 @@ public class PatientObject {
 
 	// Locators
 
+	@FindBy(xpath = "//a[@title='Patients']")
+	WebElement patient_object;
+	@FindBy(xpath = "//div[contains(text(),'New')]")
+	WebElement new_btn;
+	@FindBy(xpath = "//span[contains(.,'Next')]")
+	WebElement next_btn;
+
 	/// PersonalInfo/////
 	@FindBy(xpath = "//input[@name='First_Name__c']")
 	WebElement first_name;
@@ -39,7 +46,7 @@ public class PatientObject {
 	WebElement dateOfBirth;
 	@FindBy(xpath = "//button[@aria-label='Race & Ethnicity, --None--']")
 	WebElement raceethnicity_combobox;
-	@FindBy(xpath = "//span[@title='Asian']")
+	@FindBy(xpath = "//span[@title='American']")
 	WebElement raceethnicity_value;
 	@FindBy(xpath = "//input[@name='Have_Insurance__c']")
 	WebElement insurance_checkbox;
@@ -106,22 +113,6 @@ public class PatientObject {
 
 		PageFactory.initElements(driver, this);
 	}
-
-	public void SalesForcelogin_page() {
-
-		driver.get(SFurl);
-
-	}
-
-	public void Name_Status(String status) {
-		if (status == "fail") {
-			System.out.println("Please enter alphabets");
-		} else {
-			System.out.println("success");
-		}
-	}
-
-
 
 	/// Personal Info ///
 	public void personalInfo(String firstName, String lastName, String dob, String insuranceDetails) {

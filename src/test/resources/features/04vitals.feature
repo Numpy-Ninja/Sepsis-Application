@@ -11,13 +11,13 @@ Feature: Validating Medication and Vitals Information
   Scenario: Validate Temperature
     Given Patient is on Sepsis App Patients page
     When Patient clicks on Temperature textBox
-    Then Patient enter Temperature "102" in textBox
+    Then Patient enter Temperature "98.8" in textBox
 
   @TS_04HeartRate
   Scenario: Validate Heart Rate
     Given Patient is on Sepsis App Patients page
     When Patient clicks on Heartrate textBox
-    Then Patient enter Heart Rate "50" in textBox
+    Then Patient enter Heart Rate "90" in textBox
 
   @TS_05RespiratoryRate
   Scenario: Validate Respiratory Rate
@@ -29,7 +29,7 @@ Feature: Validating Medication and Vitals Information
   Scenario: Validate BP
     Given Patient is on Sepsis App Patients page
     When Patient clicks on BP textBox
-    Then Patient enter BP "110/50" in textBox
+    Then Patient enter BP "110/80" in textBox
 
   @TS_07Glucose
   Scenario: Validate Glucose
@@ -41,16 +41,17 @@ Feature: Validating Medication and Vitals Information
   Scenario: Validate Glucose Value
     Given Patient is on Sepsis App Patients page
     When Patient clicks on Glucose Value textBox
-    Then Patient enter Glucose Value "90" in textBox
+    Then Patient enter Glucose Value "100" in textBox
 
   @TS_09WBC
   Scenario: Validate WBC
     Given Patient is on Sepsis App Patients page
     When Patient clicks on WBC textBox
-    Then Patient enter WBC "5000" in textBox
+    Then Patient enter WBC "3000" in textBox
 
   @TS_10ValidateSaveButton
   Scenario: Validate Save Button
     Given Patient is on Sepsis App Patients page
     When Patient clicks on save button
     Then the form should be  saved succesfully by displaying a message 
+    
