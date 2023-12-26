@@ -1,12 +1,7 @@
 @SepsisBloodProfile
 Feature: Validitate Sepsis BloodProfile
 
-  @TS_01LoginPage
-  Scenario: Validate loginPage
-    Given The patient is on Signin page of SalesForce application
-    When The patient enter Valid "username" and "password"
-    And The user click on Login button
-    Then The user redirected to SalesforceHomepage
+ 
 
   @TS_02ValiditateSepsisBloodProfileNewForm
   Scenario Outline: Validitate Sepsis BloodProfile New Form
