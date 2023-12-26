@@ -318,6 +318,10 @@ public class ExistingMorbidities {
 		ac.actionClass(surgeryTxTbx, surgery);
 
 	}
+	
+	public String checkSurgeryText() {
+		return surgeryTxtbx.getText();
+	}
 
 	// International travel
 

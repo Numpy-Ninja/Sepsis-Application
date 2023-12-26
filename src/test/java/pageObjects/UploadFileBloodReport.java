@@ -1,9 +1,5 @@
 package pageObjects;
 
-import java.util.List;
-import java.util.Map;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import driverFactory.AbstractComponents;
 import driverFactory.BaseClass;
-import io.cucumber.datatable.DataTable;
 import utilities.ConfigReader;
 
 public class UploadFileBloodReport {
