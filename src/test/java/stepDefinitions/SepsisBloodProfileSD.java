@@ -19,37 +19,37 @@ public class SepsisBloodProfileSD {
 	SalesforceLoginSepsis loginPatient = new SalesforceLoginSepsis();
 	Vitals vt = new Vitals();
 	
-	String username = ConfigReader.getUsername();
-	String password = ConfigReader.getPassword();
+	// String username = ConfigReader.getUsername();
+	// String password = ConfigReader.getPassword();
 
-	@Given("The patient is on Signin page of SalesForce application")
-	public void the_patient_is_on_signin_page_of_SalesForce_application() {
+	// @Given("The patient is on Signin page of SalesForce application")
+	// public void the_patient_is_on_signin_page_of_SalesForce_application() {
 
-		sp.SalesForcelogin_page();
-	}
+	// 	sp.SalesForcelogin_page();
+	// }
 
-	@When("The patient enter Valid {string} and {string}")
-	public void the_patient_enter_Valid_and(String userName, String PassWord) {
-		sp.Login(username, password);
+	// @When("The patient enter Valid {string} and {string}")
+	// public void the_patient_enter_Valid_and(String userName, String PassWord) {
+	// 	sp.Login(username, password);
 
-	}
+	// }
 
-	@And("The user click on Login button")
-	public void the_user_click_on_Login_button() throws InterruptedException {
-		sp.login_button();
+	// @And("The user click on Login button")
+	// public void the_user_click_on_Login_button() throws InterruptedException {
+	// 	sp.login_button();
 		
-		sp.waffle_click();
-		sp.sepsisApp_click();
+	// 	sp.waffle_click();
+	// 	sp.sepsisApp_click();
 	
 		
-	}
-	@Then("The user redirected to SalesforceHomepage")
-	public void the_user_redirected_to_sales_force_homepage() {
+	// }
+	// @Then("The user redirected to SalesforceHomepage")
+	// public void the_user_redirected_to_sales_force_homepage() {
 
-		//loginPatient.patientObject_select();
+	// 	//loginPatient.patientObject_select();
 		
 
-	}
+	// }
 	@Given("Admin is on Sepsis Blood Profile Object")
 	public void admin_is_on_sepsis_blood_profile_object() {
 		sp.SelectSepsisbloodProfileObject();
