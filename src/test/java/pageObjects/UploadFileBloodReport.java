@@ -35,7 +35,7 @@ public class UploadFileBloodReport {
 	private static WebElement upload_btn;
 	@FindBy(xpath = "//button[@title='Close']//lightning-primitive-icon[@variant='bare']")
 	private static WebElement close_btn;
-"	
+	
 	@FindBy(xpath = "(//*[name()='svg'][@data-key='close'])[1]")
 	private static WebElement doneBtn;
 	@FindBy(xpath = "//span[@class='toastMessage slds-text-heading--small forceActionsText']")
