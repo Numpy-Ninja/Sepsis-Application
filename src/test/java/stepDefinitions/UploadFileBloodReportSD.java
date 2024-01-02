@@ -48,6 +48,7 @@ public class UploadFileBloodReportSD {
 	public void patient_should_able_to_upload_a_file_with_a_successful_message(String expectedMsg) throws InterruptedException {
 		actualMsg = bloodReport.uploadAlertText();
     	assertEquals(actualMsg,expectedMsg);
+		bloodReport.close_btn();
 	    
 	}
 
