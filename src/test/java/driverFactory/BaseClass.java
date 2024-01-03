@@ -1,18 +1,14 @@
 package driverFactory;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.File;
 import java.time.Duration;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -33,14 +29,20 @@ String browserType = System.getProperty("browserProperty");
 
 			driver = new ChromeDriver(option);
 
-		} else if (browser.equals("firefox")) {
+		} else if (browser.equalsIgnoreCase("Firefox")) {
+			System.out.println(new File(".").getPath());
+			System.setProperty("webdriver.gecko.driver", "Drivers/firefoxdriver/geckodriver");
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
-
-		} else if (browser.equals("safari")) {
-
+		} else if (browser.equalsIgnoreCase("Edge")) {
+			EdgeOptions edgeOptions = new EdgeOptions();
+			edgeOptions.addArguments("--disable-notifications");
+			System.setProperty("webdriver.gecko.driver", "Drivers/Edgedriver/msedgedriver");
+			// edgeOptions.addArguments("--headless");
+			driver = new EdgeDriver(edgeOptions);
 		} else {
-			System.out.println("Please pass the correct browser value: " + browser);
+			throw new RuntimeException("BrowserType Not Supported");
+
 		}
 
 		driver.manage().window().maximize();

@@ -11,12 +11,12 @@ import driverFactory.BaseClass;
 import utilities.ConfigReader;
 
 public class SalesforceLoginSepsis {
-	public static WebDriver driver = BaseClass.getdriver();
-	AbstractComponents ac = new AbstractComponents(driver);
-	String SFurl = ConfigReader.getApplicationUrl();
+	public WebDriver driver;
+	AbstractComponents ac ;
+	String SFurl ;
 	//String username = ConfigReader.getUsername();
 	// password = ConfigReader.getPassword();
-	JavascriptExecutor executor = (JavascriptExecutor) driver;
+	JavascriptExecutor executor ;
 
 	// Locators
 
@@ -40,6 +40,12 @@ public class SalesforceLoginSepsis {
 
 	public SalesforceLoginSepsis() {
 
+		driver = BaseClass.getdriver();
+		ac = new AbstractComponents(driver);
+		SFurl = ConfigReader.getApplicationUrl();
+		// String username = ConfigReader.getUsername();
+		// password = ConfigReader.getPassword();
+		executor = (JavascriptExecutor) driver;
 		PageFactory.initElements(driver, this);
 	}
 

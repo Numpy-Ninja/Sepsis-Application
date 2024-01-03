@@ -12,7 +12,7 @@ import org.checkerframework.common.reflection.qual.GetClass;
 public class ConfigReader {
 
 	private static Properties prop;
-	private static String browserType = null;
+	private static String browserType;
 	private final static String propertyFilePath = "config/Config.properties";
 
 	/**
