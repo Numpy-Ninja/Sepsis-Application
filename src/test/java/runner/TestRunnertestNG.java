@@ -22,14 +22,14 @@ public class TestRunnertestNG extends AbstractTestNGCucumberTests {
 		return super.scenarios();
 	}
 
-	@Parameters({ "browserName" })
-	@BeforeTest
-	public static void setUpScenario(String browser) {
-		try {
-			AppHooks.initSetup(browser);
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
+	// @Parameters({ "browserName" })
+	// @BeforeTest
+	// public static void setUpScenario(String browser) {
+	// 	try {
+	// 		AppHooks.initSetup(browser);
+	// 	} catch (Throwable e) {
+	// 		e.printStackTrace();
+	// 	}
+	// }
 
 }
