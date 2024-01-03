@@ -128,7 +128,7 @@ public class SepsisBloodProfileSD {
 	   boolean kidneyFailureChkbx=sp.KidneyFailureChkBx();
 	   Assert.assertTrue(kidneyFailureChkbx);
 	   
-	   boolean RespiratoryFailureChkbx=sp.KidneyFailureChkBx();
+	   boolean RespiratoryFailureChkbx=sp.RespiratoryFailureChkBx();
 	   Assert.assertTrue(RespiratoryFailureChkbx);
 	   
 	}

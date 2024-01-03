@@ -17,11 +17,10 @@ public class SepsisBloodProfile {
 	AbstractComponents ac = new AbstractComponents(driver);
 	String SFurl = ConfigReader.getApplicationUrl();
 	String username = ConfigReader.getUsername();
-     String  password = ConfigReader.getPassword();
+	String password = ConfigReader.getPassword();
 
 	// Locators
 
-	
 	@FindBy(id = "username")
 	private static WebElement user;
 	@FindBy(id = "password")
@@ -38,7 +37,7 @@ public class SepsisBloodProfile {
 	private static WebElement new_btn;
 	@FindBy(xpath = "//h2[contains(text(),'New Patient:')]")
 	private static WebElement new_patient;
-	
+
 	@FindBy(xpath = "//a[@title='Sepsis Blood Profiles']")
 	private static WebElement sepsisBloodProfile;
 	@FindBy(xpath = "//span[@class='toastMessage slds-text-heading--small forceActionsText']")
@@ -68,7 +67,7 @@ public class SepsisBloodProfile {
 	private static WebElement PacO2;
 	@FindBy(xpath = "//input[@name='FiO2__c']")
 	private static WebElement FiO2;
-	
+
 	// Saved Form
 
 	@FindBy(xpath = "(//div[2]/span[1]/slot[1]/lightning-formatted-number[1])[1]")
@@ -95,36 +94,35 @@ public class SepsisBloodProfile {
 	private static WebElement KidneyFailureChkBx;
 	@FindBy(xpath = "(//span[@part='indicator'])[3]")
 	private static WebElement RespiratoryFailureChkBx;
-	
+
 	@FindBy(xpath = "(//a[@title='SBP-0016']")
 	private static WebElement sepsisId;
-	
+
 	@FindBy(xpath = "//div[@role='none']//div[@part='input-container']")
 	private static WebElement inputBox;
 	@FindBy(xpath = "//ul[1]//span[2]/span[1]/span[@title='PT-0498']")
 	private static WebElement SelectPatientId;
-	
+
 	@FindBy(xpath = "(//span[@class='slds-checkbox_faux'])[2]")
 	private static WebElement PHeartFailureChkbx;
-	
+
 	@FindBy(xpath = "(//span[@class='slds-checkbox_faux'])[3]")
 	private static WebElement PKidneyFailureChkbx;
-	
+
 	@FindBy(xpath = "(//span[@class='slds-checkbox_faux'])[4]")
 	private static WebElement PRespiratoryFailureChkbx;
-	
+
 	@FindBy(xpath = "//lightning-formatted-text[@slot='primaryField']")
 	private static WebElement sepsisSavedId;
-	
-	@FindBy(xpath ="//a[@title='PT-0498']")
-	private static WebElement SepsisPatientId;	
-	
+
+	@FindBy(xpath = "//a[@title='PT-0498']")
+	private static WebElement SepsisPatientId;
+
 	public SepsisBloodProfile() {
-		
-		
 
 		PageFactory.initElements(driver, this);
 	}
+
 	public void SalesForcelogin_page() {
 
 		driver.get(SFurl);
@@ -160,22 +158,22 @@ public class SepsisBloodProfile {
 		// waitForElementToappear(sepsisApp);
 		sepsisApp.click();
 	}
+
 	public void SelectSepsisbloodProfileObject() {
 		ac.actionClassMoveTo(sepsisBloodProfile);
 	}
 
 	public void clickOnNewForm() {
-		
+
 		ac.waitForElementToappear(newForm);
 		newForm.click();
 	}
 
 	public void enterPatientId(String patientId) {
 		ac.actionClass(inputBox, patientId);
-		//ac.waitForElementToappear(SelectPatientId);
-		//ac.actionClassMoveTo(SelectPatientId);
+		// ac.waitForElementToappear(SelectPatientId);
+		// ac.actionClassMoveTo(SelectPatientId);
 		driver.findElement(By.xpath("//strong[normalize-space()='PT-0498']")).click();
-		
 
 	}
 
@@ -184,27 +182,27 @@ public class SepsisBloodProfile {
 	}
 
 	public void enterSystolicblo(String systolicbloValue) {
-		//ac.actionClass(Systolicblo, systolicbloValue);
+		// ac.actionClass(Systolicblo, systolicbloValue);
 		Systolicblo.sendKeys(systolicbloValue);
 	}
 
 	public void enterDiastlicblo(String DiastlicbloValue) {
-		//ac.actionClass(Diastlicblo, DiastlicbloValue);
+		// ac.actionClass(Diastlicblo, DiastlicbloValue);
 		Diastlicblo.sendKeys(DiastlicbloValue);
 	}
 
 	public void enterHr(String HrValue) {
-		//ac.actionClass(Hr, HrValue);
+		// ac.actionClass(Hr, HrValue);
 		Hr.sendKeys(HrValue);
 	}
 
 	public void enterEgfr(String Egfrvalue) {
-		//ac.actionClass(Egfr, Egfrvalue);
+		// ac.actionClass(Egfr, Egfrvalue);
 		Egfr.sendKeys(Egfrvalue);
 	}
 
 	public void enterTroponin(String Troponinvalue) {
-		//ac.actionClass(Troponin, Troponinvalue);
+		// ac.actionClass(Troponin, Troponinvalue);
 		Troponin.sendKeys(Troponinvalue);
 	}
 
@@ -220,111 +218,102 @@ public class SepsisBloodProfile {
 		ac.actionClassMoveTo(saveButton);
 	}
 
-	public void clickSepsisId()
-	{
+	public void clickSepsisId() {
 		ac.actionClassMoveTo(sepsisId);
 	}
-	
-	public String checkCardiacOutput(String cardiacOutput)
-	{
+
+	public String checkCardiacOutput(String cardiacOutput) {
 		CardiacOutput.getText();
 		return cardiacOutput;
 	}
-	
-public String checkPFRatio(String PfRatio)
-{
-	PFRatio.getText();
-	return PfRatio;
-}
-public String checkMyocardialDepression(String myocardialDepression)
-{
-	MyocardialDepression.getText();
-	return myocardialDepression;
-}
 
-public String checkeGFRoutput(String eGFroutput)
-{
-	eGFRoutput.getText();
-	return eGFroutput;
-}
+	public String checkPFRatio(String PfRatio) {
+		PFRatio.getText();
+		return PfRatio;
+	}
 
-public String checkfiO2_saved(String fiO2_Saved)
-{
-	fiO2_saved.getText();
-	return fiO2_Saved;
-}
-public String checkPFOutputResult(String PFoutputResult)
-{
-	PFOutputResult.getText();
-	return PFoutputResult;
-}
-public boolean HeartFailureChkBx()
-{
-	HeartFailureChkBx.isSelected();
-	return true;
-}
+	public String checkMyocardialDepression(String myocardialDepression) {
+		MyocardialDepression.getText();
+		return myocardialDepression;
+	}
 
-public boolean KidneyFailureChkBx()
-{
-	KidneyFailureChkBx.isSelected();
-	return true;
-}
+	public String checkeGFRoutput(String eGFroutput) {
+		eGFRoutput.getText();
+		return eGFroutput;
+	}
 
-public boolean RespiratoryFailureChkBx()
-{
-	RespiratoryFailureChkBx.isSelected();
-	return true;
-}
-public void selectSepsisPatientId()
-{
+	public String checkfiO2_saved(String fiO2_Saved) {
+		fiO2_saved.getText();
+		return fiO2_Saved;
+	}
 
-	JavascriptExecutor executor = (JavascriptExecutor) driver;
-	executor.executeScript("arguments[0].click();",SepsisPatientId );
-}
-public boolean PHeartFailureChkBx()
-{
-	PHeartFailureChkbx.isSelected();
-	return true;
-}
+	public String checkPFOutputResult(String PFoutputResult) {
+		PFOutputResult.getText();
+		return PFoutputResult;
+	}
 
-public boolean PKidneyFailureChkBx()
-{
-	PKidneyFailureChkbx.isSelected();
-	return true;
-}
+	public boolean HeartFailureChkBx() {
+		HeartFailureChkBx.isSelected();
+		return true;
+	}
 
-public boolean PRespiratoryFailureChkBx()
-{
-	PRespiratoryFailureChkbx.isSelected();
-	return false;
-}
+	public boolean KidneyFailureChkBx() {
+		KidneyFailureChkBx.isSelected();
+		return true;
+	}
 
-public String getLastElementText()
-{
-	
-	
-	ac.waitForElementToappear(sepsisSavedId);
-	return sepsisSavedId.getText();
-}
-public String getExpectedMsg()
-{
-	
-	String lastRecord = getLastElementText();
-	System.out.println(lastRecord);//pt-0164
-	char quotes = '"';
-	String expectedAlertMsg = "Sepsis Blood Profile" +" " +quotes+ lastRecord +quotes + " was created.";//Sepsis Blood ProfileSBP-0076" was created.
-	System.out.println(expectedAlertMsg);
-	return expectedAlertMsg;
-	
-}
-public String sepsisgetalertMsg()
-{
-	ac.waitForElementToappear(sepsisAlertmsg);
-	System.out.println(sepsisAlertmsg.getText());
-	return sepsisAlertmsg.getText();
+	public boolean RespiratoryFailureChkBx() {
+		RespiratoryFailureChkBx.isSelected();
+		return true;
+	}
 
+	public void selectSepsisPatientId() {
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", SepsisPatientId);
+	}
 
-}
+	public boolean PHeartFailureChkBx() {
+		PHeartFailureChkbx.isSelected();
+		return true;
+	}
+
+	public boolean PKidneyFailureChkBx() {
+		PKidneyFailureChkbx.isSelected();
+		return true;
+	}
+
+	public boolean PRespiratoryFailureChkBx() {
+		PRespiratoryFailureChkbx.isSelected();
+		return false;
+	}
+
+	public String getLastElementText() {
+
+		ac.waitForElementToappear(sepsisSavedId);
+		return sepsisSavedId.getText();
+	}
+
+	public String getExpectedMsg() {
+
+		String lastRecord = getLastElementText();
+		System.out.println(lastRecord);// pt-0164
+		char quotes = '"';
+		String expectedAlertMsg = "Sepsis Blood Profile" + " " + quotes + lastRecord + quotes + " was created.";// Sepsis
+																												// Blood
+																												// ProfileSBP-0076"
+																												// was
+																												// created.
+		System.out.println(expectedAlertMsg);
+		return expectedAlertMsg;
+
+	}
+
+	public String sepsisgetalertMsg() {
+		ac.waitForElementToappear(sepsisAlertmsg);
+		System.out.println(sepsisAlertmsg.getText());
+		return sepsisAlertmsg.getText();
+
+	}
 
 }

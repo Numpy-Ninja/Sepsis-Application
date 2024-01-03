@@ -4,12 +4,18 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Driver;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import driverFactory.BaseClass;
 import utilities.ConfigReader;
@@ -25,13 +31,11 @@ public class AppHooks  {
 	private static WebDriver driver;
 	private static BaseClass driverfactory;
 
-	@BeforeAll
-	public static void before() throws Throwable {
-		// Get browser Type from config file
-		
+	public static void initSetup(String browser) throws Throwable {
+	    
 		ConfigReader.init_prop();	
-		String browser = ConfigReader.getBrowserType();
-		System.out.println(ConfigReader.getBrowserType());
+		//String browser = ConfigReader.getBrowserType();
+		//System.out.println(ConfigReader.getBrowserType());
 
 		// Initialize driver from driver factory
 		driverfactory = new BaseClass();
