@@ -30,6 +30,8 @@ public class UploadFileBloodReportSD {
     	assertEquals(actualMsg,expectedMsg);
 	    Thread.sleep(500);
 	   
+		bloodReport.close_btn();
+	    
 	}
 
 }

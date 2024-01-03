@@ -33,6 +33,8 @@ public class UploadFileBloodReport {
 	private static WebElement RelatedTab;
 	@FindBy(xpath = "(//input[@type='file'])[1]")
 	private static WebElement upload_btn;
+	@FindBy(xpath = "//button[@title='Close']//lightning-primitive-icon[@variant='bare']")
+	private static WebElement close_btn;
 	
 	@FindBy(xpath = "(//*[name()='svg'][@data-key='close'])[1]")
 	private static WebElement doneBtn;
@@ -122,8 +124,10 @@ public class UploadFileBloodReport {
 
 	}
 	
-	
-
+	public void close_btn()
+	{
+		ac.actionClassMoveTo(close_btn);
+	}
 	public String getRiskOfSepsis(String sepsisStatus) {
 		String SepsisRisk = "";
 		//Boolean surgeryCheckbx= existingMorbidities.SurgeryCkbxChecked();
