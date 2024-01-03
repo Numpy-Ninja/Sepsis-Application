@@ -31,11 +31,22 @@ public class AppHooks  {
 	private static WebDriver driver;
 	private static BaseClass driverfactory;
 
-	public static void initSetup(String browser) throws Throwable {
+	// public static void initSetup(String browser) throws Throwable {
 	    
+	// 	ConfigReader.init_prop();	
+	// 	//String browser = ConfigReader.getBrowserType();
+	// 	//System.out.println(ConfigReader.getBrowserType());
+
+	// 	// Initialize driver from driver factory
+	// 	driverfactory = new BaseClass();
+	// 	driver = BaseClass.init_driver(browser);
+	@BeforeAll
+	public static void before() throws Throwable {
+		// Get browser Type from config file
+		
 		ConfigReader.init_prop();	
-		//String browser = ConfigReader.getBrowserType();
-		//System.out.println(ConfigReader.getBrowserType());
+		String browser = ConfigReader.getBrowserType();
+		System.out.println(ConfigReader.getBrowserType());
 
 		// Initialize driver from driver factory
 		driverfactory = new BaseClass();
