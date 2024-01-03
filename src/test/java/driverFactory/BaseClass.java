@@ -19,7 +19,7 @@ public class BaseClass {
 	public static WebDriverWait wait;
 
 	public static WebDriver init_driver(String browser) {
-String browserType = System.getProperty("browserProperty");
+//String browserType = System.getProperty("browserProperty");
 		System.out.println("browser value is: " + browser);
 
 		if (browser.equals("chrome")) {
